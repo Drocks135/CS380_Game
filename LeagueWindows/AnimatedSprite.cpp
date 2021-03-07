@@ -10,7 +10,7 @@ AnimatedSprite::AnimatedSprite(std::string spriteSheetPath, int sortingLayer, An
 	animNum = startingAnimNum;
 	frameNum = 0;
 	frameTime = 0.0f;
-	animFPS = 60.0f;
+	animFPS = 12.0f;
 
 	int imageNum = inputAnimData->frameInfo.at(startingAnimNum)->startFrame;
 	currentImage = inputAnimData->images.at(imageNum);

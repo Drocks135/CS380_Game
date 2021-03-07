@@ -28,7 +28,10 @@ void Player::update(double delta) {
 
 void Player::left(double delta, bool start) {
 	int value = start ? -150 : 0;
-	velocity.setX(value);
+	
+	velocity.setX(velocity.getX() + value);
+	
+	
 
 	if (start) {
 		ChangeAnimation(2);
@@ -37,7 +40,8 @@ void Player::left(double delta, bool start) {
 
 void Player::right(double delta, bool start) {
 	int value = start ? 150 : 0;
-	velocity.setX(value);
+	
+	velocity.setX(velocity.getX() + value);
 
 	if (start) {
 		ChangeAnimation(3);
@@ -45,7 +49,8 @@ void Player::right(double delta, bool start) {
 }
 
 void Player::up(double delta, bool start) {
-	int value = start ? -150 : 0;
+	int value = start && velocity.getY() > -150 ? -150 : 0;
+	
 	velocity.setY(value);
 
 	if (start) {
@@ -54,11 +59,13 @@ void Player::up(double delta, bool start) {
 }
 
 void Player::down(double delta, bool start ) {
-	int value = start ? 150 : 0;
+	int value = start && velocity.getY() < 150 ? 150 : 0;
+	
 	velocity.setY(value);
 
 	if (start) {
-		ChangeAnimation(0);
+		if(animNum != 0)
+			ChangeAnimation(0);
 	}
 }
 
