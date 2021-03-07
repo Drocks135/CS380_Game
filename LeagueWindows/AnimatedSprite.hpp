@@ -30,11 +30,18 @@ public:
 	void draw();
 
 protected:
+	// all data for all sprites and animations for this GameObject
 	AnimData* animationData;
+	// The particular animation that is active
 	int animNum;
+	// The frame number of the specific animation that is active
 	int frameNum;
+	// The amount of time the current frame has been displayed
 	float frameTime;
+	// The FPS the animation is running at 
 	float animFPS;
+
+	// The coordinates on the spritesheet of the current image being displayed
 	SDL_Rect* currentImage;
 
 	void ChangeAnimation(int animationNum);

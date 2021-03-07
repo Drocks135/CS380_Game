@@ -13,6 +13,9 @@ Player::~Player() {
 }
 
 void Player::update(double delta) {
+	if (velocity.getX() != 0 || velocity.getY() != 0) {
+		UpdateAnimation(delta);
+	}
 	position.setX(position.getX() + velocity.getX() * delta);
 	position.setY(position.getY() + velocity.getY() * delta);
 	if (position.getX() > 1024 - rect->w || position.getX() < 0) {
@@ -28,7 +31,7 @@ void Player::left(double delta, bool start) {
 	velocity.setX(value);
 
 	if (start) {
-		currentImage = animationData->images[animationData->frameInfo[2]->startFrame];
+		ChangeAnimation(2);
 	}
 }
 
@@ -37,7 +40,7 @@ void Player::right(double delta, bool start) {
 	velocity.setX(value);
 
 	if (start) {
-		currentImage = animationData->images[animationData->frameInfo[3]->startFrame];
+		ChangeAnimation(3);
 	}
 }
 
@@ -46,7 +49,7 @@ void Player::up(double delta, bool start) {
 	velocity.setY(value);
 
 	if (start) {
-		currentImage = animationData->images[animationData->frameInfo[1]->startFrame];
+		ChangeAnimation(1);
 	}
 }
 
@@ -55,7 +58,7 @@ void Player::down(double delta, bool start ) {
 	velocity.setY(value);
 
 	if (start) {
-		currentImage = animationData->images[animationData->frameInfo[0]->startFrame];
+		ChangeAnimation(0);
 	}
 }
 

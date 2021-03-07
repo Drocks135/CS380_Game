@@ -42,20 +42,21 @@ int main(int argc, char** argv){
 
 	// Construct animation structs for the player object
 	// TODO: MAKE STATIC METHOD IN PLAYER TO DO THIS
-	AnimFrameData* down = new AnimFrameData{ 0, 1 };
+	AnimFrameData* down = new AnimFrameData{ 0, 5 };
 
-	AnimFrameData* up = new AnimFrameData{ 1, 1 };
+	AnimFrameData* up = new AnimFrameData{ 5, 1 };
 	
 
-	AnimFrameData* left = new AnimFrameData{ 2, 1 };
+	AnimFrameData* left = new AnimFrameData{ 6, 1 };
 	
 
-	AnimFrameData* right = new AnimFrameData{ 3, 1 };
+	AnimFrameData* right = new AnimFrameData{ 7, 1 };
 	
-
-	
-
-	SDL_Rect* downRect = new SDL_Rect{ 4, 3, 18, 25 };
+	SDL_Rect* downRect1 = new SDL_Rect{ 4, 3, 18, 25 };
+	SDL_Rect* downRect2 = new SDL_Rect{ 35, 3, 19, 25 };
+	SDL_Rect* downRect3 = new SDL_Rect{ 67, 4, 19, 24 };
+	SDL_Rect* downRect4 = new SDL_Rect{ 99, 3, 19, 25 };
+	SDL_Rect* downRect5 = new SDL_Rect{ 131, 4, 19, 24 };
 	SDL_Rect* upRect = new SDL_Rect{10, 35, 17, 24};
 	SDL_Rect* leftRect = new SDL_Rect{ 3, 67, 18, 25 };
 	SDL_Rect* rightRect = new SDL_Rect{ 11, 99, 18, 25 };
@@ -65,7 +66,11 @@ int main(int argc, char** argv){
 	PlayerAnimationData.frameInfo.push_back(up);
 	PlayerAnimationData.frameInfo.push_back(left);
 	PlayerAnimationData.frameInfo.push_back(right);
-	PlayerAnimationData.images.push_back(downRect);
+	PlayerAnimationData.images.push_back(downRect1);
+	PlayerAnimationData.images.push_back(downRect2);
+	PlayerAnimationData.images.push_back(downRect3);
+	PlayerAnimationData.images.push_back(downRect4);
+	PlayerAnimationData.images.push_back(downRect5);
 	PlayerAnimationData.images.push_back(upRect);
 	PlayerAnimationData.images.push_back(leftRect);
 	PlayerAnimationData.images.push_back(rightRect);
