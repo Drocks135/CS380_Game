@@ -1,0 +1,15 @@
+﻿  Banana.cpp
+D:\School\SchoolWinter2020\CIS-380\CS380_Game\LeagueWindows\LeagueWindows\Banana.cpp(43,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\School\SchoolWinter2020\CIS-380\CS380_Game\LeagueWindows\LeagueWindows\Banana.cpp(44,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Engine.cpp
+D:\School\SchoolWinter2020\CIS-380\CS380_Game\LeagueWindows\LeagueWindows\Engine.cpp(59,24): warning C4244: 'argument': conversion from 'double' to 'Uint32', possible loss of data
+  HUD.cpp
+D:\School\SchoolWinter2020\CIS-380\CS380_Game\LeagueWindows\LeagueWindows\HUD.cpp(36,18): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+D:\School\SchoolWinter2020\CIS-380\CS380_Game\LeagueWindows\LeagueWindows\HUD.cpp(49,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\School\SchoolWinter2020\CIS-380\CS380_Game\LeagueWindows\LeagueWindows\HUD.cpp(50,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Interfaces.cpp
+  main.cpp
+  Scene.cpp
+  Utility.cpp
+  Generating Code...
+  LeagueWindows.vcxproj -> D:\School\SchoolWinter2020\CIS-380\CS380_Game\LeagueWindows\x64\Debug\LeagueWindows.exe
