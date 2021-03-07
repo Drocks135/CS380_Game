@@ -4,6 +4,7 @@
 #include <functional>
 
 typedef std::function<void(double)> Callback;
+typedef std::function<void(double, bool)> KeypressCallback;
 
 class Vector2 {
 	public:

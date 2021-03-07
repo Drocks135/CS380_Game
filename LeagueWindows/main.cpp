@@ -42,9 +42,22 @@ int main(int argc, char** argv){
 
 	Player* player = new Player(&PlayerAnimationData);
 
+
+	/*auto player_up = [player](double delta) { player->up(delta); };
+	auto player_down = [player](double delta) { player->down(delta); };
+	auto player_left = [player](double delta) { player->left(delta); };*/
+	auto player_up = [player](double delta, bool start) { player->up(delta, start); };
+	auto player_down = [player](double delta, bool start) { player->down(delta, start); };
+	auto player_left = [player](double delta, bool start) { player->left(delta, start); };
+	auto player_right = [player](double delta, bool start) { player->right(delta, start); };
 	
 	one.addUpdateable(player);
 	one.addDrawable(player);
+
+	one.addKeyEvent(SDLK_w, player_up);
+	one.addKeyEvent(SDLK_a, player_left);
+	one.addKeyEvent(SDLK_d, player_right);
+	one.addKeyEvent(SDLK_s, player_down);
 
 	/*// Make a banana and add to scene. Should update and draw.
 	SDL_Surface* surface = IMG_Load("../assets/banana.png");
