@@ -11,7 +11,7 @@ HUD::HUD(){
 	color.r=0;
 	color.g=0;
 	color.b=0;
-	surface = TTF_RenderText_Solid(stick, "CRAZY BOUNCING BANANA, EPIC!", color); 
+	surface = TTF_RenderText_Solid(stick, "Knight Boi Speen", color); 
 	if(surface == NULL){
 		SDL_Log("Can't create text. %s", SDL_GetError());
 	}

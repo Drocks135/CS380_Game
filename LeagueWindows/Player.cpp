@@ -35,16 +35,28 @@ void Player::left(double delta, bool start) {
 void Player::right(double delta, bool start) {
 	int value = start ? 150 : 0;
 	velocity.setX(value);
+
+	if (start) {
+		currentImage = animationData->images[animationData->frameInfo[3]->startFrame];
+	}
 }
 
 void Player::up(double delta, bool start) {
 	int value = start ? -150 : 0;
 	velocity.setY(value);
+
+	if (start) {
+		currentImage = animationData->images[animationData->frameInfo[1]->startFrame];
+	}
 }
 
 void Player::down(double delta, bool start ) {
 	int value = start ? 150 : 0;
 	velocity.setY(value);
+
+	if (start) {
+		currentImage = animationData->images[animationData->frameInfo[0]->startFrame];
+	}
 }
 
 void Player::swingSword(double delta) {

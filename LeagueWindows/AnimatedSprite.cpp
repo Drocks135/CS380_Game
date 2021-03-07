@@ -53,8 +53,8 @@ void AnimatedSprite::draw() {
 	SDL_Rect* dst = new SDL_Rect();
 	dst->x = position.getX();
 	dst->y = position.getY();
-	dst->w = rect->w;
-	dst->h = rect->h;
+	dst->w = currentImage->w * 3;
+	dst->h = currentImage->h * 3;
 	//todo: render from source rect rather than null
 	SDL_RenderCopy(Engine::getRenderer(), texture, currentImage, dst);
 }
