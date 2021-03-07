@@ -19,21 +19,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimatedSprite.cpp" />
     <ClCompile Include="Banana.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="Interfaces.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimatedSprite.hpp" />
     <ClInclude Include="Banana.hpp" />
     <ClInclude Include="Engine.hpp" />
     <ClInclude Include="HUD.hpp" />
     <ClInclude Include="Interfaces.hpp" />
+    <ClInclude Include="Player.hpp" />
     <ClInclude Include="Properties.hpp" />
     <ClInclude Include="Scene.hpp" />
+    <ClInclude Include="Sprite.hpp" />
     <ClInclude Include="Utility.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
