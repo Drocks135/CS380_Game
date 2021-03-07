@@ -25,20 +25,55 @@ int main(int argc, char** argv){
 	one.addDrawable(h);
 
 
+	/*// code taken from the textbook
+	struct AnimFrameData {
+		// The index of the first frame of an animation
+		int startFrame;
+		// The total number of frames for a particulare animation
+		int numFrames;
+	};
+
+	struct AnimData {
+		// Array of images for all animations for a sprite
+		std::vector<SDL_Rect*> images;
+		// Frame data array for each of the animations for the sprite
+		std::vector<AnimFrameData> frameInfo;
+	};*/
+
 	// Construct animation structs for the player object
 	// TODO: MAKE STATIC METHOD IN PLAYER TO DO THIS
-	AnimFrameData afd;
-	afd.startFrame = 0;
-	afd.numFrames = 10;
+	AnimFrameData down;
+	down.startFrame = 0;
+	down.numFrames = 1;
 
-	SDL_Rect* anim1Rect = new SDL_Rect();
+	AnimFrameData up;
+	up.startFrame = 1;
+	up.numFrames = 1;
 
-	AnimData PlayerAnimationData;
-	PlayerAnimationData.frameInfo.push_back(afd);
-	PlayerAnimationData.images.push_back(anim1Rect);
+	AnimFrameData left;
+	left.startFrame = 2;
+	left.numFrames = 1;
+
+	AnimFrameData right;
+	right.startFrame = 3;
+	right.numFrames = 1;
+
 	
 
-	std::cout << "AnimFrame data is " << afd.startFrame << afd.numFrames << std::endl;
+	SDL_Rect* downRect = new SDL_Rect{ 4, 3, 18, 25 };
+	SDL_Rect* upRect = new SDL_Rect{10, 35, 17, 24};
+	SDL_Rect* leftRect = new SDL_Rect{ 3, 67, 18, 25 };
+	SDL_Rect* rightRect = new SDL_Rect{ 11, 99, 18, 25 };
+
+	AnimData PlayerAnimationData;
+	PlayerAnimationData.frameInfo.push_back(down);
+	PlayerAnimationData.frameInfo.push_back(up);
+	PlayerAnimationData.frameInfo.push_back(left);
+	PlayerAnimationData.frameInfo.push_back(right);
+	PlayerAnimationData.images.push_back(downRect);
+	PlayerAnimationData.images.push_back(upRect);
+	PlayerAnimationData.images.push_back(leftRect);
+	PlayerAnimationData.images.push_back(rightRect);
 
 	Player* player = new Player(&PlayerAnimationData);
 

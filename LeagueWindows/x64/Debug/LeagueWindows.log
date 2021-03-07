@@ -1,2 +1,6 @@
-﻿  Player.cpp
+﻿  AnimatedSprite.cpp
+C:\Users\Aaron\Desktop\Winter2021\GameDev\CS380_Game\LeagueWindows\AnimatedSprite.cpp(38,34): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Aaron\Desktop\Winter2021\GameDev\CS380_Game\LeagueWindows\AnimatedSprite.cpp(48,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Aaron\Desktop\Winter2021\GameDev\CS380_Game\LeagueWindows\AnimatedSprite.cpp(54,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Aaron\Desktop\Winter2021\GameDev\CS380_Game\LeagueWindows\AnimatedSprite.cpp(55,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   LeagueWindows.vcxproj -> C:\Users\Aaron\Desktop\Winter2021\GameDev\CS380_Game\x64\Debug\LeagueWindows.exe
