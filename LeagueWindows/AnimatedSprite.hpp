@@ -19,7 +19,7 @@ struct AnimData {
 	// Array of images for all animations for a sprite
 	std::vector<SDL_Rect*> images;
 	// Frame data array for each of the animations for the sprite
-	std::vector<AnimFrameData> frameInfo;
+	std::vector<AnimFrameData*> frameInfo;
 };
 
 class AnimatedSprite : public Sprite {
@@ -29,7 +29,7 @@ public:
 
 	void draw();
 
-private:
+protected:
 	AnimData* animationData;
 	int animNum;
 	int frameNum;

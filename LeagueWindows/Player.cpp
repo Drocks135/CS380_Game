@@ -26,6 +26,10 @@ void Player::update(double delta) {
 void Player::left(double delta, bool start) {
 	int value = start ? -150 : 0;
 	velocity.setX(value);
+
+	if (start) {
+		currentImage = animationData->images[animationData->frameInfo[2]->startFrame];
+	}
 }
 
 void Player::right(double delta, bool start) {

@@ -12,7 +12,7 @@ AnimatedSprite::AnimatedSprite(std::string spriteSheetPath, int sortingLayer, An
 	frameTime = 0.0f;
 	animFPS = 24.0f;
 
-	int imageNum = inputAnimData->frameInfo.at(startingAnimNum).startFrame;
+	int imageNum = inputAnimData->frameInfo.at(startingAnimNum)->startFrame;
 	currentImage = inputAnimData->images.at(imageNum);
 
 	// todo: change starting rect
@@ -25,7 +25,7 @@ void AnimatedSprite::ChangeAnimation(int animationNum) {
 	frameNum = 0;
 	frameTime = 0.0f;
 
-	int imageNum = animationData->frameInfo.at(animNum).startFrame;
+	int imageNum = animationData->frameInfo.at(animNum)->startFrame;
 	currentImage = animationData->images.at(imageNum);
 	
 }
@@ -37,12 +37,12 @@ void AnimatedSprite::UpdateAnimation(float delta) {
 	if (frameTime > (1 / animFPS)) {
 		frameNum += frameTime * animFPS;
 		
-		if (frameNum >= animationData->frameInfo.at(animNum).numFrames) {
-			frameNum = frameNum % animationData->frameInfo.at(animNum).numFrames;
+		if (frameNum >= animationData->frameInfo.at(animNum)->numFrames) {
+			frameNum = frameNum % animationData->frameInfo.at(animNum)->numFrames;
 		}
 
 		//update the active image
-		int imageNum = animationData->frameInfo.at(animNum).startFrame + frameNum;
+		int imageNum = animationData->frameInfo.at(animNum)->startFrame + frameNum;
 		currentImage = animationData->images.at(imageNum);
 
 		frameTime = fmod(frameTime, 1 / animFPS);

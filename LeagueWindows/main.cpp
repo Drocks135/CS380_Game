@@ -42,21 +42,16 @@ int main(int argc, char** argv){
 
 	// Construct animation structs for the player object
 	// TODO: MAKE STATIC METHOD IN PLAYER TO DO THIS
-	AnimFrameData down;
-	down.startFrame = 0;
-	down.numFrames = 1;
+	AnimFrameData* down = new AnimFrameData{ 0, 1 };
 
-	AnimFrameData up;
-	up.startFrame = 1;
-	up.numFrames = 1;
+	AnimFrameData* up = new AnimFrameData{ 1, 1 };
+	
 
-	AnimFrameData left;
-	left.startFrame = 2;
-	left.numFrames = 1;
+	AnimFrameData* left = new AnimFrameData{ 2, 1 };
+	
 
-	AnimFrameData right;
-	right.startFrame = 3;
-	right.numFrames = 1;
+	AnimFrameData* right = new AnimFrameData{ 3, 1 };
+	
 
 	
 
