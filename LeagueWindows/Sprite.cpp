@@ -74,6 +74,26 @@ int Sprite::getLayer() {
 	return layer;
 }
 
+int Sprite::getLayer() {
+	return layer;
+}
+
+int Sprite::getX() {
+	return rect->x;
+}
+
+int Sprite::getY() {
+	return rect->y;
+}
+
+int Sprite::getWidth() {
+	return rect->w;
+}
+
+int Sprite::getHeight() {
+	return rect->h;
+}
+
 // Comparator based on sorting layer
 bool Sprite::operator<(const Sprite& other) {
 	return (this->layer < other.layer);

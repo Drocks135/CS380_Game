@@ -16,6 +16,10 @@ public:
 	void draw();
 	void setLayer(int sortingLayer);
 	int getLayer();
+	int getX();
+	int getY();
+	int getWidth();
+	int getHeight();
 
 	bool operator<(const Sprite& other);
 protected:
