@@ -15,6 +15,18 @@ public:
 	void up(double delta, bool start);
 	void down(double delta, bool start);
 	void swingSword(double delta);
+
+private: 
+	bool movingDown;
+	bool movingUp;
+	bool movingLeft;
+	bool movingRight;
+	void EndAnimationBasedOnMovement(int animationEnding);
+	void CheckAndSetDownAnim();
+	void CheckAndSetUpAnim();
+	void CheckAndSetLeftAnim();
+	void CheckAndSetRightAnim();
+
 };
 
 #endif
