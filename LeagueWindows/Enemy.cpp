@@ -28,18 +28,35 @@ void Enemy::update(double delta) {
 	int xVelocity = 0;
 	int yVelocity = 0;
 
+	int xDif = playerPosition.getX() - position.getX();
+	int yDif = playerPosition.getY() - position.getY();
+
 	if (playerPosition.getX() < position.getX()) {
-		xVelocity = -100;
+		// prevent bug where enemy bounces back and forth
+		// because it can't get to the player position
+		if (xDif > -100)
+			xVelocity = xDif;
+		else
+			xVelocity = -100;
 	} 
 	else if (playerPosition.getX() > position.getX()) {
-		xVelocity = 100;
+		if (xDif < 100)
+			xVelocity = xDif;
+		else
+			xVelocity = 100;
 	}
 
 	if (playerPosition.getY() < position.getY()) {
-		yVelocity = -100;
+		if (yDif > -100)
+			yVelocity = yDif;
+		else
+			yVelocity = -100;
 	}
 	else if (playerPosition.getY() > position.getY()) {
-		yVelocity = 100;
+		if (yDif < 100)
+			yVelocity = yDif;
+		else
+			yVelocity = 100;
 	}
 
 	velocity.setX(xVelocity);
