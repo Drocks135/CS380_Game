@@ -1,5 +1,6 @@
 #include "Engine.hpp"
 #include "AnimatedSprite.hpp"
+#include "Utility.hpp";
 #include "Player.hpp"
 #include <SDL.h>
 
@@ -59,6 +60,12 @@ void Player::update(double delta) {
 		position.setY(0);
 	}
 }
+
+// included so that enemies can track the player
+Vector3 Player::getPlayerPosition() {
+	return this->position;
+}
+
 
 void Player::left(double delta, bool keydown) {
 	if (keydown) {

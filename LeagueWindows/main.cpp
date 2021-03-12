@@ -3,6 +3,7 @@
 #include "Sprite.hpp"
 #include "AnimatedSprite.hpp"
 #include "Player.hpp"
+#include "Enemy.hpp"
 #include "HUD.hpp"
 #include <SDL.h>
 #include <iostream>
@@ -97,6 +98,19 @@ int main(int argc, char** argv){
 	one.addKeyEvent(SDLK_a, player_left);
 	one.addKeyEvent(SDLK_d, player_right);
 	one.addKeyEvent(SDLK_s, player_down);
+
+	// make enemy animation structs
+	AnimFrameData* enemyFrameData = new AnimFrameData{ 0, 1 };
+	AnimData enemyAnimationData;
+	enemyAnimationData.frameInfo.push_back(enemyFrameData);
+	enemyAnimationData.images.push_back(new SDL_Rect{ 0, 0, 100, 100 });
+
+	Vector2* startpos = new Vector2(200, 200);
+
+	Enemy* enemy = new Enemy(&enemyAnimationData, player, *startpos);
+
+	one.addDrawable(enemy);
+	one.addUpdateable(enemy);
 
 	// Set the scene in the engine
 	engine.setScene(&one);

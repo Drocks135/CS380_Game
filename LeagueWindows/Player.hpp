@@ -15,6 +15,7 @@ public:
 	void up(double delta, bool start);
 	void down(double delta, bool start);
 	void swingSword(double delta);
+	Vector3 getPlayerPosition();
 
 private: 
 	bool movingDown;
