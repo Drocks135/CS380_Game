@@ -38,29 +38,23 @@ Player::~Player() {
 void Player::update(double delta) {
 
 	// check status of the sword swing
-	if (swingingSword && swingTimer > 0)
+	// if the sword swing is in progress
+	if (swingingSword && swingTimer > 0) {
 		swingTimer -= delta;
+	}
+	// if the sword swing is over
 	else if (swingingSword) {
 		// if we're done, update the flags and animation to facing the correct direction
 		swingingSword = false;
 		swingTimer = 0.0;
-		switch (animNum) {
-			case DOWN_SWING_ANIM:
-				ChangeAnimation(DOWN_ANIM);
-				break;
-			case UP_SWING_ANIM:
-				ChangeAnimation(UP_ANIM);
-				break;
-			case RIGHT_SWING_ANIM:
-				ChangeAnimation(RIGHT_ANIM);
-				break;
-			case LEFT_SWING_ANIM:
-				ChangeAnimation(LEFT_ANIM);
-				break;
-			default:
-				ChangeAnimation(DOWN_ANIM);
-				break;
-		}
+		
+		// movement animations are swing animations - 4
+		// shouldn't need the else, but there just in case
+		if (animNum > 3)
+			ChangeAnimation(animNum - 4);
+		else
+			ChangeAnimation(DOWN_ANIM);
+		
 	}
 	
 	// lock movement if we're swinging the sword
@@ -171,7 +165,8 @@ void Player::down(double delta, bool keydown ) {
 void Player::swingSword(double delta, bool keydown) {
 	if (!swingingSword) {
 		// we will swing in the direction of the current animation
-		ChangeAnimation(DOWN_SWING_ANIM);
+		// swing animation number for all directions is current animation + 4
+		ChangeAnimation(animNum + 4);
 		swingingSword = true;
 		swingTimer = 0.42;
 
