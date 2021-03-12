@@ -3,11 +3,17 @@
 #include "Utility.hpp";
 #include "Player.hpp"
 #include <SDL.h>
+#include <string>
 
 #define DOWN_ANIM 0
 #define UP_ANIM 1
 #define LEFT_ANIM 2
 #define RIGHT_ANIM 3
+
+#define DOWN_SWING_ANIM 4
+#define UP_SWING_ANIM 5
+#define LEFT_SWING_ANIM 6
+#define RIGHT_SWING_ANIM 7
 
 Player::Player(AnimData* inputAnimData) : AnimatedSprite("../assets/PlayerSpriteSheet.png", 1, inputAnimData, 0) {
 	actionState = 0;
@@ -17,6 +23,9 @@ Player::Player(AnimData* inputAnimData) : AnimatedSprite("../assets/PlayerSprite
 	movingUp = false;
 	movingLeft = false;
 	movingRight = false;
+
+	swingTimer = 0.0;
+	swingingSword = false;
 
 	health = 5;
 }
@@ -28,23 +37,56 @@ Player::~Player() {
 
 void Player::update(double delta) {
 
-	// caclculate movement based on input states
-	int xVelocity = 0;
-	int yVelocity = 0;
+	// check status of the sword swing
+	if (swingingSword && swingTimer > 0)
+		swingTimer -= delta;
+	else if (swingingSword) {
+		// if we're done, update the flags and animation to facing the correct direction
+		swingingSword = false;
+		swingTimer = 0.0;
+		switch (animNum) {
+			case DOWN_SWING_ANIM:
+				ChangeAnimation(DOWN_ANIM);
+				break;
+			case UP_SWING_ANIM:
+				ChangeAnimation(UP_ANIM);
+				break;
+			case RIGHT_SWING_ANIM:
+				ChangeAnimation(RIGHT_ANIM);
+				break;
+			case LEFT_SWING_ANIM:
+				ChangeAnimation(LEFT_ANIM);
+				break;
+			default:
+				ChangeAnimation(DOWN_ANIM);
+				break;
+		}
+	}
+	
+	// lock movement if we're swinging the sword
+	if (!swingingSword) {
+		// caclculate movement based on input states
+		int xVelocity = 0;
+		int yVelocity = 0;
 
-	if (movingDown)
-		yVelocity += 150;
-	if (movingUp)
-		yVelocity += -150;
-	if (movingRight)
-		xVelocity += 150;
-	if (movingLeft)
-		xVelocity += -150;
+		if (movingDown)
+			yVelocity += 150;
+		if (movingUp)
+			yVelocity += -150;
+		if (movingRight)
+			xVelocity += 150;
+		if (movingLeft)
+			xVelocity += -150;
 
-	velocity.setX(xVelocity);
-	velocity.setY(yVelocity);
+		velocity.setX(xVelocity);
+		velocity.setY(yVelocity);
+	}
 
-	// update animations
+	// unless we're doing a sword swing, update animation only when we're moving
+	if (swingingSword) {
+		UpdateAnimation(delta);
+	}
+
 	if (velocity.getX() != 0 || velocity.getY() != 0) {
 		UpdateAnimation(delta);
 	}
@@ -126,8 +168,16 @@ void Player::down(double delta, bool keydown ) {
 	}
 }
 
-void Player::swingSword(double delta) {
+void Player::swingSword(double delta, bool keydown) {
+	if (!swingingSword) {
+		// we will swing in the direction of the current animation
+		ChangeAnimation(DOWN_SWING_ANIM);
+		swingingSword = true;
+		swingTimer = 0.42;
 
+		velocity.setX(0);
+		velocity.setY(0);
+	}
 }
 
 void Player::EndAnimationBasedOnMovement(int animationEnding) {

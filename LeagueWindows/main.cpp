@@ -28,14 +28,14 @@ int main(int argc, char** argv){
 	// Construct animation structs for the player object
 	// TODO: MAKE STATIC METHOD IN PLAYER TO DO THIS
 	AnimFrameData* down = new AnimFrameData{ 0, 5 };
-
 	AnimFrameData* up = new AnimFrameData{ 5, 5 };
-
-
 	AnimFrameData* left = new AnimFrameData{ 10, 5 };
-
-
 	AnimFrameData* right = new AnimFrameData{ 15, 5 };
+
+	AnimFrameData* downSwing = new AnimFrameData{ 20, 5 };
+	AnimFrameData* upSwing = new AnimFrameData{ 25, 5 };
+	AnimFrameData* leftSwing = new AnimFrameData{ 30, 5 };
+	AnimFrameData* rightSwing = new AnimFrameData{ 35, 5 };
 
 	SDL_Rect* downRect1 = new SDL_Rect{ 4, 4, 18, 25 };
 	SDL_Rect* downRect2 = new SDL_Rect{ 35, 4, 18, 25 };
@@ -58,31 +58,51 @@ int main(int argc, char** argv){
 	SDL_Rect* rightRect4 = new SDL_Rect{ 107, 99, 18, 25 };
 	SDL_Rect* rightRect5 = new SDL_Rect{ 139, 99, 18, 25 };
 
+	SDL_Rect* downSwingRect1 = new SDL_Rect{ 4, 131, 18, 25 };
+	SDL_Rect* downSwingRect2 = new SDL_Rect{ 43, 131, 13, 25 };
+	SDL_Rect* downSwingRect3 = new SDL_Rect{ 76, 131, 17, 25 };
+	SDL_Rect* downSwingRect4 = new SDL_Rect{ 96, 131, 26, 25 };
+	SDL_Rect* downSwingRect5 = new SDL_Rect{ 128, 131, 22, 25 };
+
 	AnimData PlayerAnimationData;
 	PlayerAnimationData.frameInfo.push_back(down);
 	PlayerAnimationData.frameInfo.push_back(up);
 	PlayerAnimationData.frameInfo.push_back(left);
 	PlayerAnimationData.frameInfo.push_back(right);
+	PlayerAnimationData.frameInfo.push_back(downSwing);
+	PlayerAnimationData.frameInfo.push_back(upSwing);
+	PlayerAnimationData.frameInfo.push_back(leftSwing);
+	PlayerAnimationData.frameInfo.push_back(rightSwing);
+
 	PlayerAnimationData.images.push_back(downRect1);
 	PlayerAnimationData.images.push_back(downRect2);
 	PlayerAnimationData.images.push_back(downRect3);
 	PlayerAnimationData.images.push_back(downRect4);
 	PlayerAnimationData.images.push_back(downRect5);
+
 	PlayerAnimationData.images.push_back(upRect1);
 	PlayerAnimationData.images.push_back(upRect2);
 	PlayerAnimationData.images.push_back(upRect3);
 	PlayerAnimationData.images.push_back(upRect4);
 	PlayerAnimationData.images.push_back(upRect5);
+
 	PlayerAnimationData.images.push_back(leftRect1);
 	PlayerAnimationData.images.push_back(leftRect2);
 	PlayerAnimationData.images.push_back(leftRect3);
 	PlayerAnimationData.images.push_back(leftRect4);
 	PlayerAnimationData.images.push_back(leftRect5);
+
 	PlayerAnimationData.images.push_back(rightRect1);
 	PlayerAnimationData.images.push_back(rightRect2);
 	PlayerAnimationData.images.push_back(rightRect3);
 	PlayerAnimationData.images.push_back(rightRect4);
 	PlayerAnimationData.images.push_back(rightRect5);
+
+	PlayerAnimationData.images.push_back(downSwingRect1);
+	PlayerAnimationData.images.push_back(downSwingRect2);
+	PlayerAnimationData.images.push_back(downSwingRect3);
+	PlayerAnimationData.images.push_back(downSwingRect4);
+	PlayerAnimationData.images.push_back(downSwingRect5);
 
 	Player* player = new Player(&PlayerAnimationData);
 
@@ -90,6 +110,7 @@ int main(int argc, char** argv){
 	auto player_down = [player](double delta, bool start) { player->down(delta, start); };
 	auto player_left = [player](double delta, bool start) { player->left(delta, start); };
 	auto player_right = [player](double delta, bool start) { player->right(delta, start); };
+	auto player_swing = [player](double delta, bool start) { player->swingSword(delta, start); };
 	
 	one.addUpdateable(player);
 	one.addDrawable(player);
@@ -98,6 +119,7 @@ int main(int argc, char** argv){
 	one.addKeyEvent(SDLK_a, player_left);
 	one.addKeyEvent(SDLK_d, player_right);
 	one.addKeyEvent(SDLK_s, player_down);
+	one.addKeyEvent(SDLK_SPACE, player_swing);
 
 	// make enemy animation structs
 	AnimFrameData* enemyFrameData = new AnimFrameData{ 0, 1 };
@@ -109,8 +131,8 @@ int main(int argc, char** argv){
 
 	Enemy* enemy = new Enemy(&enemyAnimationData, player, *startpos);
 
-	one.addDrawable(enemy);
-	one.addUpdateable(enemy);
+	//one.addDrawable(enemy);
+	//one.addUpdateable(enemy);
 
 	// Set the scene in the engine
 	engine.setScene(&one);

@@ -10,11 +10,11 @@ public:
 	Player(AnimData* inputAnimData);
 	~Player();
 	void update(double delta);
-	void left(double delta, bool start);
-	void right(double delta, bool start);
-	void up(double delta, bool start);
-	void down(double delta, bool start);
-	void swingSword(double delta);
+	void left(double delta, bool keydown);
+	void right(double delta, bool keydown);
+	void up(double delta, bool keydown);
+	void down(double delta, bool keydown);
+	void swingSword(double delta, bool keydown);
 	int getHealth();
 	Vector3 getPlayerPosition();
 
@@ -24,6 +24,12 @@ private:
 	bool movingUp;
 	bool movingLeft;
 	bool movingRight;
+	// indicates how long a swing will take
+	double swingTimer;
+	// indicates whether we're in a sword swing. movement
+	// will stop when this is occuring
+	bool swingingSword;
+
 	void EndAnimationBasedOnMovement(int animationEnding);
 	void CheckAndSetDownAnim();
 	void CheckAndSetUpAnim();
