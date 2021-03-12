@@ -74,10 +74,6 @@ int Sprite::getLayer() {
 	return layer;
 }
 
-int Sprite::getLayer() {
-	return layer;
-}
-
 int Sprite::getX() {
 	return rect->x;
 }

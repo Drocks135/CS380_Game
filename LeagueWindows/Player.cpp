@@ -56,19 +56,19 @@ void Player::update(double delta) {
 void Player::left(double delta, bool keydown) {
 	if (keydown) {
 		movingLeft = true;
-		if(!movingRight)
+		if(animNum != LEFT_ANIM && !movingRight)
 			ChangeAnimation(LEFT_ANIM);
 	}
 	else {
 		movingLeft = false;
-		//EndAnimationBasedOnMovement(LEFT_ANIM);
+		EndAnimationBasedOnMovement(LEFT_ANIM);
 	}
 }
 
 void Player::right(double delta, bool keydown) {
 	if (keydown) {
 		movingRight = true;
-		if(!movingLeft)
+		if(animNum != RIGHT_ANIM && !movingLeft)
 			ChangeAnimation(RIGHT_ANIM);
 	}
 	else {
@@ -80,7 +80,7 @@ void Player::right(double delta, bool keydown) {
 void Player::up(double delta, bool keydown) {
 	if (keydown) {
 		movingUp = true;
-		if(!movingDown)
+		if(animNum != UP_ANIM && !movingDown)
 			ChangeAnimation(UP_ANIM);
 	}
 	else {

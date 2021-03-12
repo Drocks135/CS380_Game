@@ -24,41 +24,33 @@ int main(int argc, char** argv){
 	one.addUpdateable(h);
 	one.addDrawable(h);
 
-
-	/*// code taken from the textbook
-	struct AnimFrameData {
-		// The index of the first frame of an animation
-		int startFrame;
-		// The total number of frames for a particulare animation
-		int numFrames;
-	};
-
-	struct AnimData {
-		// Array of images for all animations for a sprite
-		std::vector<SDL_Rect*> images;
-		// Frame data array for each of the animations for the sprite
-		std::vector<AnimFrameData> frameInfo;
-	};*/
-
 	// Construct animation structs for the player object
 	// TODO: MAKE STATIC METHOD IN PLAYER TO DO THIS
 	AnimFrameData* down = new AnimFrameData{ 0, 5 };
 
-	AnimFrameData* up = new AnimFrameData{ 5, 1 };
-	
+	AnimFrameData* up = new AnimFrameData{ 5, 5 };
 
-	AnimFrameData* left = new AnimFrameData{ 6, 1 };
-	
 
-	AnimFrameData* right = new AnimFrameData{ 7, 1 };
-	
-	SDL_Rect* downRect1 = new SDL_Rect{ 4, 3, 18, 25 };
-	SDL_Rect* downRect2 = new SDL_Rect{ 35, 3, 19, 25 };
-	SDL_Rect* downRect3 = new SDL_Rect{ 67, 4, 19, 24 };
-	SDL_Rect* downRect4 = new SDL_Rect{ 99, 3, 19, 25 };
-	SDL_Rect* downRect5 = new SDL_Rect{ 131, 4, 19, 24 };
-	SDL_Rect* upRect = new SDL_Rect{10, 35, 17, 24};
-	SDL_Rect* leftRect = new SDL_Rect{ 3, 67, 18, 25 };
+	AnimFrameData* left = new AnimFrameData{ 10, 5 };
+
+
+	AnimFrameData* right = new AnimFrameData{ 15, 1 };
+
+	SDL_Rect* downRect1 = new SDL_Rect{ 4, 4, 18, 25 };
+	SDL_Rect* downRect2 = new SDL_Rect{ 35, 4, 18, 25 };
+	SDL_Rect* downRect3 = new SDL_Rect{ 67, 4, 18, 25 };
+	SDL_Rect* downRect4 = new SDL_Rect{ 99, 4, 18, 25 };
+	SDL_Rect* downRect5 = new SDL_Rect{ 131, 4, 18, 25 };
+	SDL_Rect* upRect1 = new SDL_Rect{ 10, 35, 18, 25 };
+	SDL_Rect* upRect2 = new SDL_Rect{ 42, 35, 18, 25 };
+	SDL_Rect* upRect3 = new SDL_Rect{ 74, 35, 18, 25 };
+	SDL_Rect* upRect4 = new SDL_Rect{ 106, 35, 18, 25 };
+	SDL_Rect* upRect5 = new SDL_Rect{ 138, 35, 18, 25 };
+	SDL_Rect* leftRect1 = new SDL_Rect{ 3, 67, 18, 25 };
+	SDL_Rect* leftRect2 = new SDL_Rect{ 35, 67, 18, 25 };
+	SDL_Rect* leftRect3 = new SDL_Rect{ 68, 67, 18, 25 };
+	SDL_Rect* leftRect4 = new SDL_Rect{ 99, 67, 18, 25 };
+	SDL_Rect* leftRect5 = new SDL_Rect{ 132, 67, 18, 25 };
 	SDL_Rect* rightRect = new SDL_Rect{ 11, 99, 18, 25 };
 
 	AnimData PlayerAnimationData;
@@ -71,8 +63,16 @@ int main(int argc, char** argv){
 	PlayerAnimationData.images.push_back(downRect3);
 	PlayerAnimationData.images.push_back(downRect4);
 	PlayerAnimationData.images.push_back(downRect5);
-	PlayerAnimationData.images.push_back(upRect);
-	PlayerAnimationData.images.push_back(leftRect);
+	PlayerAnimationData.images.push_back(upRect1);
+	PlayerAnimationData.images.push_back(upRect2);
+	PlayerAnimationData.images.push_back(upRect3);
+	PlayerAnimationData.images.push_back(upRect4);
+	PlayerAnimationData.images.push_back(upRect5);
+	PlayerAnimationData.images.push_back(leftRect1);
+	PlayerAnimationData.images.push_back(leftRect2);
+	PlayerAnimationData.images.push_back(leftRect3);
+	PlayerAnimationData.images.push_back(leftRect4);
+	PlayerAnimationData.images.push_back(leftRect5);
 	PlayerAnimationData.images.push_back(rightRect);
 
 	Player* player = new Player(&PlayerAnimationData);
