@@ -10,6 +10,7 @@
 
 Player::Player(AnimData* inputAnimData) : AnimatedSprite("../assets/PlayerSpriteSheet.png", 1, inputAnimData, 0) {
 	actionState = 0;
+	currentImageScale = 3;
 }
 
 
@@ -44,12 +45,18 @@ void Player::update(double delta) {
 	position.setX(position.getX() + velocity.getX() * delta);
 	position.setY(position.getY() + velocity.getY() * delta);
 
-	// TEMPORARY stop movement at screen edge
-	if (position.getX() > 1024 - rect->w || position.getX() < 0) {
-		velocity.setX(0);
+	//  Add collision at screen edge TODO FIX TO ACTUAL DRAWN SIZE
+	if (position.getX() > 1024 - currentImage->w * currentImageScale) {
+		position.setX(1024 - currentImage->w * currentImageScale);
 	}
-	if (position.getY() > 768 - rect->h || position.getY() < 0) {
-		velocity.setY(0);
+	else if (position.getX() < 0) {
+		position.setX(0);
+	}
+	if (position.getY() > 768 - currentImage->h * currentImageScale) {
+		position.setY(768 - currentImage->h * currentImageScale);
+	}
+	else if (position.getY() < 0) {
+		position.setY(0);
 	}
 }
 

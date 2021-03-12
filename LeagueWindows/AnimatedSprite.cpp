@@ -14,6 +14,7 @@ AnimatedSprite::AnimatedSprite(std::string spriteSheetPath, int sortingLayer, An
 
 	int imageNum = inputAnimData->frameInfo.at(startingAnimNum)->startFrame;
 	currentImage = inputAnimData->images.at(imageNum);
+	currentImageScale = 1;
 }
 
 void AnimatedSprite::ChangeAnimation(int animationNum) {
@@ -50,8 +51,8 @@ void AnimatedSprite::draw() {
 	SDL_Rect* dst = new SDL_Rect();
 	dst->x = position.getX();
 	dst->y = position.getY();
-	dst->w = currentImage->w * 3;
-	dst->h = currentImage->h * 3;
+	dst->w = currentImage->w * currentImageScale;
+	dst->h = currentImage->h * currentImageScale;
 	SDL_RenderCopy(Engine::getRenderer(), texture, currentImage, dst);
 }
 
