@@ -70,6 +70,18 @@ int main(int argc, char** argv){
 	SDL_Rect* upSwingRect4 = new SDL_Rect{ 103, 163, 25 , 25 };
 	SDL_Rect* upSwingRect5 = new SDL_Rect{ 138, 163, 22 , 25 };
 
+	SDL_Rect* leftSwingRect1 = new SDL_Rect{ 3, 196, 18, 25 };
+	SDL_Rect* leftSwingRect2 = new SDL_Rect{ 43, 196, 14, 25 };
+	SDL_Rect* leftSwingRect3 = new SDL_Rect{ 75, 196, 19, 25 };
+	SDL_Rect* leftSwingRect4 = new SDL_Rect{ 96, 196, 27, 25 };
+	SDL_Rect* leftSwingRect5 = new SDL_Rect{ 128, 196, 22, 25 };
+
+	SDL_Rect* rightSwingRect1 = new SDL_Rect{ 11, 227, 18, 25 };
+	SDL_Rect* rightSwingRect2 = new SDL_Rect{ 39, 227, 14, 25 };
+	SDL_Rect* rightSwingRect3 = new SDL_Rect{ 66, 227, 19, 25 };
+	SDL_Rect* rightSwingRect4 = new SDL_Rect{ 101, 227, 27, 25 };
+	SDL_Rect* rightSwingRect5 = new SDL_Rect{ 138, 227, 22, 25 };
+
 	AnimData PlayerAnimationData;
 	PlayerAnimationData.frameInfo.push_back(down);
 	PlayerAnimationData.frameInfo.push_back(up);
@@ -115,6 +127,20 @@ int main(int argc, char** argv){
 	PlayerAnimationData.images.push_back(upSwingRect3);
 	PlayerAnimationData.images.push_back(upSwingRect4);
 	PlayerAnimationData.images.push_back(upSwingRect5);
+
+	PlayerAnimationData.images.push_back(leftSwingRect1);
+	PlayerAnimationData.images.push_back(leftSwingRect2);
+	PlayerAnimationData.images.push_back(leftSwingRect3);
+	PlayerAnimationData.images.push_back(leftSwingRect4);
+	PlayerAnimationData.images.push_back(leftSwingRect5);
+
+	PlayerAnimationData.images.push_back(rightSwingRect1);
+	PlayerAnimationData.images.push_back(rightSwingRect2);
+	PlayerAnimationData.images.push_back(rightSwingRect3);
+	PlayerAnimationData.images.push_back(rightSwingRect4);
+	PlayerAnimationData.images.push_back(rightSwingRect5);
+
+	
 
 	Player* player = new Player(&PlayerAnimationData);
 

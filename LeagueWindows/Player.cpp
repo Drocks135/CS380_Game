@@ -52,8 +52,18 @@ void Player::update(double delta) {
 		// shouldn't need the else, but there just in case
 		if (animNum > 3)
 			ChangeAnimation(animNum - 4);
-		else
-			ChangeAnimation(DOWN_ANIM);
+		else {
+			// todo change animation to correct direction based on movement
+			if (movingUp)
+				ChangeAnimation(UP_ANIM);
+			else if (movingDown)
+				ChangeAnimation(DOWN_ANIM);
+			else if (movingLeft)
+				ChangeAnimation(LEFT_ANIM);
+			else if (movingRight)
+				ChangeAnimation(RIGHT_ANIM);
+		}
+			
 		
 	}
 	
@@ -117,7 +127,7 @@ int Player::getHealth() {
 void Player::left(double delta, bool keydown) {
 	if (keydown) {
 		movingLeft = true;
-		if(animNum != LEFT_ANIM && !movingRight)
+		if(animNum != LEFT_ANIM && !movingRight && !swingingSword)
 			ChangeAnimation(LEFT_ANIM);
 	}
 	else {
@@ -129,7 +139,7 @@ void Player::left(double delta, bool keydown) {
 void Player::right(double delta, bool keydown) {
 	if (keydown) {
 		movingRight = true;
-		if(animNum != RIGHT_ANIM && !movingLeft)
+		if(animNum != RIGHT_ANIM && !movingLeft && !swingingSword)
 			ChangeAnimation(RIGHT_ANIM);
 	}
 	else {
@@ -141,7 +151,7 @@ void Player::right(double delta, bool keydown) {
 void Player::up(double delta, bool keydown) {
 	if (keydown) {
 		movingUp = true;
-		if(animNum != UP_ANIM && !movingDown)
+		if(animNum != UP_ANIM && !movingDown && !swingingSword)
 			ChangeAnimation(UP_ANIM);
 	}
 	else {
@@ -153,7 +163,7 @@ void Player::up(double delta, bool keydown) {
 void Player::down(double delta, bool keydown ) {
 	if (keydown) {
 		movingDown = true;
-		if(animNum != DOWN_ANIM && !movingUp)
+		if(animNum != DOWN_ANIM && !movingUp && !swingingSword)
 			ChangeAnimation(DOWN_ANIM);
 	}
 	else {
@@ -183,7 +193,6 @@ void Player::EndAnimationBasedOnMovement(int animationEnding) {
 	// axis. 
 
 	// If there is no movement elsewhere, the animation will stay in its current state. 
-
 	if (animationEnding == UP_ANIM) {
 		CheckAndSetDownAnim();
 		CheckAndSetLeftAnim();
