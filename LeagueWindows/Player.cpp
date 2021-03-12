@@ -12,6 +12,13 @@
 Player::Player(AnimData* inputAnimData) : AnimatedSprite("../assets/PlayerSpriteSheet.png", 1, inputAnimData, 0) {
 	actionState = 0;
 	currentImageScale = 3;
+
+	movingDown = false;
+	movingUp = false;
+	movingLeft = false;
+	movingRight = false;
+
+	health = 5;
 }
 
 
@@ -64,6 +71,10 @@ void Player::update(double delta) {
 // included so that enemies can track the player
 Vector3 Player::getPlayerPosition() {
 	return this->position;
+}
+
+int Player::getHealth() {
+	return this->health;
 }
 
 

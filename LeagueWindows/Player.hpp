@@ -15,9 +15,11 @@ public:
 	void up(double delta, bool start);
 	void down(double delta, bool start);
 	void swingSword(double delta);
+	int getHealth();
 	Vector3 getPlayerPosition();
 
 private: 
+	int health;
 	bool movingDown;
 	bool movingUp;
 	bool movingLeft;
