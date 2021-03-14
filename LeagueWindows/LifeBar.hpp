@@ -10,7 +10,7 @@ public:
 	LifeBar();
 	~LifeBar();
 	void update(double delta);
-	void setLife();
+	void setLife(int health);
 };
 
 #endif
