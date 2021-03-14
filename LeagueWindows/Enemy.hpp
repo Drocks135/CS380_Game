@@ -5,13 +5,13 @@
 #include "Utility.hpp"
 #include "Player.hpp"
 #include <SDL.h>
+#include <cmath>
 
 class Enemy : public AnimatedSprite {
 public:
 	Enemy(AnimData* inputAnimData, Player* inputPlayer, Vector2 startPosition);
 	~Enemy();
 	void update(double delta);
-
 	void draw();
 
 private:
@@ -20,6 +20,9 @@ private:
 	SDL_RendererFlip flipDirection;
 
 	int speed;
+	Vector3 respawnPosition;
+
+	void Die();
 };
 
 #endif
