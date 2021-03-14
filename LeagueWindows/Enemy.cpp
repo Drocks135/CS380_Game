@@ -9,8 +9,8 @@
 // Enemy sprite is public domain, courtesy of  LazyDev (AKA Viktor Gorbulin).
 // Link to sprite: https://opengameart.org/content/ghost-animated
 Enemy::Enemy(AnimData* inputAnimData, Player* inputPlayer, Vector2* startPosition) : AnimatedSprite("../assets/EnemySpriteSheet.png", 2, inputAnimData, 0) {
-	currentImageScale = 3;
-
+	// scale enemy to fit our current screen size
+	currentImageScale = 2.75;
 	currentPlayer = inputPlayer;
 
 	position.setX(startPosition->getX());
@@ -27,7 +27,6 @@ Enemy::Enemy(AnimData* inputAnimData, Player* inputPlayer, Vector2* startPositio
 		respawnPosition.setX(position.getX());
 	}
 	
-
 	flipDirection = SDL_FLIP_NONE;
 
 	speed = 100;
@@ -39,7 +38,8 @@ Enemy::~Enemy() {
 }
 
 void Enemy::update(double delta) {
-
+	// updates the enemy's animation. This can occur with no condition since the 
+	// enemy only really has one state
 	UpdateAnimation(delta);
 
 	// update velocity to track the player
@@ -55,6 +55,7 @@ void Enemy::update(double delta) {
 	if (std::abs(xDif) < 25 && std::abs(yDif) < 25) {
 		Die();
 	}
+	// END TODO
 
 	if (playerPosition.getX() < position.getX()) {
 		// prevent bug where enemy bounces back and forth
@@ -90,8 +91,6 @@ void Enemy::update(double delta) {
 			yVelocity = speed;
 	}
 
-	
-
 	velocity.setX(xVelocity);
 	velocity.setY(yVelocity);
 
@@ -100,7 +99,7 @@ void Enemy::update(double delta) {
 	position.setY(position.getY() + velocity.getY() * delta);
 }
 
-// overrides animatedsprite to make use of RenderCopyEx to flip our sprite
+// overrides AnimatedSprite to make use of RenderCopyEx to flip our sprite
 void Enemy::draw() {
 	SDL_Rect* dst = new SDL_Rect();
 	dst->x = position.getX();
