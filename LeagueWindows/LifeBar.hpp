@@ -11,8 +11,6 @@ public:
 	~LifeBar();
 	void update(double delta);
 	void setLife();
-	void down(double delta, bool start);
-	void up(double delta, bool start);
 };
 
 #endif
