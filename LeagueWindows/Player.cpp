@@ -19,6 +19,7 @@
 // the Creative Commons Attribution 3.0 license. No modifications to the sprites have been made.
 // Attribution notice from the website: Simple Knight by Calciumtrice, usable under Creative Commons Attribution 3.0 license.
 Player::Player(AnimData* inputAnimData) : AnimatedSprite("../assets/PlayerSpriteSheet.png", 1, inputAnimData, 0) {
+	// scale our sprites to fit well within our screen
 	currentImageScale = 3;
 
 	movingDown = false;
@@ -30,21 +31,24 @@ Player::Player(AnimData* inputAnimData) : AnimatedSprite("../assets/PlayerSprite
 	swingingSword = false;
 
 	health = 5;
+	score = 0;
 
 	playerSpeed = 150;
 
-	position.setX(512);
-	position.setY(384);
+	// start player near the center of the screen
+	position.setX(480);
+	position.setY(300);
 }
 
 
 Player::~Player() {
-	SDL_Log("Destrucing Player");
+	// destruction mostly taken care of in sprite
 }
 
 void Player::update(double delta) {
 
-	// check status of the sword swing
+	// check status of the sword swing - either branch will only 
+	// run if a sword swing has recently occured
 	// if the sword swing is in progress
 	if (swingingSword && swingTimer > 0) {
 		swingTimer -= delta;
@@ -60,7 +64,7 @@ void Player::update(double delta) {
 		if (animNum > 3)
 			ChangeAnimation(animNum - 4);
 		else {
-			// todo change animation to correct direction based on movement
+			// change animation to the correct direction based on movement
 			if (movingUp)
 				ChangeAnimation(UP_ANIM);
 			else if (movingDown)
@@ -70,8 +74,6 @@ void Player::update(double delta) {
 			else if (movingRight)
 				ChangeAnimation(RIGHT_ANIM);
 		}
-			
-		
 	}
 	
 	// lock movement if we're swinging the sword
@@ -106,7 +108,7 @@ void Player::update(double delta) {
 	position.setX(position.getX() + velocity.getX() * delta);
 	position.setY(position.getY() + velocity.getY() * delta);
 
-	//  Add collision at screen edge TODO FIX TO ACTUAL DRAWN SIZE
+	//  Add collision at screen edge
 	if (position.getX() > 1024 - currentImage->w * currentImageScale) {
 		position.setX(1024 - currentImage->w * currentImageScale);
 	}
@@ -121,16 +123,12 @@ void Player::update(double delta) {
 	}
 }
 
-// included so that enemies can track the player
-Vector3 Player::getPlayerPosition() {
-	return this->position;
-}
-
-int Player::getHealth() {
-	return this->health;
-}
-
-
+// all movment functions have the same sort of flow:
+// if the key is being pressed down, set the flag for moving in that 
+// direction to true, and update the animation to that direction (unless
+// we are swinging the sword, moving in the opposite direction, or already
+// moving in that direction
+// if the key has been lifted, unset the flag and end our animation (see helper function)
 void Player::left(double delta, bool keydown) {
 	if (keydown) {
 		movingLeft = true;
@@ -179,6 +177,7 @@ void Player::down(double delta, bool keydown ) {
 	}
 }
 
+// swings the player's sword
 void Player::swingSword(double delta, bool keydown) {
 	if (!swingingSword) {
 		// we will swing in the direction of the current animation
@@ -192,13 +191,24 @@ void Player::swingSword(double delta, bool keydown) {
 	}
 }
 
-// add 100 to the score
+// score can only go up or be reset, and only rises in increments of 100
 void Player::incrementScore() {
 	score += 100;
 }
 
+// included so that the HUD can display the score
 int Player::getScore() {
 	return score;
+}
+
+// included so that enemies can track the player
+Vector3 Player::getPlayerPosition() {
+	return this->position;
+}
+
+// included so that the health bar HUD can track player heatlth
+int Player::getHealth() {
+	return this->health;
 }
 
 void Player::EndAnimationBasedOnMovement(int animationEnding) {
