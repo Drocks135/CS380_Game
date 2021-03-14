@@ -3,7 +3,14 @@
 #include <string>
 #include <SDL.h>
 
+// constructor mainly for HUD, where there is no path
+// and the surface is taken care of in the constructor
+Sprite::Sprite(int sortingLayer) {
+	layer = sortingLayer;
+}
+
 Sprite::Sprite(std::string path, int sortingLayer) {
+	actionState = 0;
 	layer = sortingLayer;
 
 	surface = IMG_Load(path.c_str());

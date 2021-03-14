@@ -4,7 +4,7 @@
 #include "Player.hpp"
 #include <string>
 
-HUD::HUD(Player* inputPlayer){
+HUD::HUD(Player* inputPlayer) : Sprite(0){
 	stick = TTF_OpenFont("../assets/stick.ttf", 48);
 	if(stick == NULL){
 		SDL_Log("No font. %s", TTF_GetError());
@@ -41,11 +41,3 @@ void HUD::update(double delta){
 	texture = SDL_CreateTextureFromSurface(Engine::getRenderer(), surface);
 }
 
-void HUD::draw(){
-	SDL_Rect* dst = new SDL_Rect();
-	dst->x = position.getX();
-	dst->y = position.getY();
-	dst->w = rect->w;
-	dst->h = rect->h;
-	SDL_RenderCopy(Engine::getRenderer(), texture, NULL, dst);
-}

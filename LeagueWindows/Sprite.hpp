@@ -9,6 +9,7 @@
 
 class Sprite : public DUGameObject {
 public:
+	Sprite(int sortingLayer);
 	Sprite(std::string path, int sortingLayer);
 	Sprite(SDL_Surface* ptrSurface, int sortingLayer);
 	virtual ~Sprite();

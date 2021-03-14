@@ -8,7 +8,7 @@
 
 // Enemy sprite is public domain, courtesy of  LazyDev (AKA Viktor Gorbulin).
 // Link to sprite: https://opengameart.org/content/ghost-animated
-Enemy::Enemy(AnimData* inputAnimData, Player* inputPlayer, Vector2* startPosition) : AnimatedSprite("../assets/EnemySpriteSheet.png", 1, inputAnimData, 0) {
+Enemy::Enemy(AnimData* inputAnimData, Player* inputPlayer, Vector2* startPosition) : AnimatedSprite("../assets/EnemySpriteSheet.png", 2, inputAnimData, 0) {
 	actionState = 0;
 	currentImageScale = 3;
 
