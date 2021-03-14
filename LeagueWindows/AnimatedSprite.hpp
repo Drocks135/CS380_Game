@@ -45,7 +45,7 @@ protected:
 	SDL_Rect* currentImage;
 
 	// The factor by which we scale the current image as we draw it
-	int currentImageScale;
+	double currentImageScale;
 
 	void ChangeAnimation(int animationNum);
 	void UpdateAnimation(float delta);

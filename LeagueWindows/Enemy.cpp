@@ -5,14 +5,17 @@
 #include "Enemy.hpp"
 #include <SDL.h>
 
+// Enemy sprite is public domain, courtesy of  LazyDev (AKA Viktor Gorbulin).
+// Link to sprite: https://opengameart.org/content/ghost-animated
 Enemy::Enemy(AnimData* inputAnimData, Player* inputPlayer, Vector2 startPosition) : AnimatedSprite("../assets/EnemySpriteSheet.png", 1, inputAnimData, 0) {
 	actionState = 0;
-	currentImageScale = 1;
+	currentImageScale = 3;
 
 	currentPlayer = inputPlayer;
 
 	position.setX(startPosition.getX());
 	position.setY(startPosition.getY());
+	flipDirection = SDL_FLIP_NONE;
 }
 
 
@@ -38,12 +41,18 @@ void Enemy::update(double delta) {
 			xVelocity = xDif;
 		else
 			xVelocity = -100;
+
+		// flip the sprite to face the player
+		flipDirection = SDL_FLIP_HORIZONTAL;
 	} 
 	else if (playerPosition.getX() > position.getX()) {
 		if (xDif < 100)
 			xVelocity = xDif;
 		else
 			xVelocity = 100;
+
+		// flip the sprite to face the player
+		flipDirection = SDL_FLIP_NONE;
 	}
 
 	if (playerPosition.getY() < position.getY()) {
@@ -65,4 +74,14 @@ void Enemy::update(double delta) {
 	// update position
 	position.setX(position.getX() + velocity.getX() * delta);
 	position.setY(position.getY() + velocity.getY() * delta);
+}
+
+// overrides animatedsprite to make use of RenderCopyEx to flip our sprite
+void Enemy::draw() {
+	SDL_Rect* dst = new SDL_Rect();
+	dst->x = position.getX();
+	dst->y = position.getY();
+	dst->w = currentImage->w * currentImageScale;
+	dst->h = currentImage->h * currentImageScale;
+	SDL_RenderCopyEx(Engine::getRenderer(), texture, currentImage, dst, 0.0, NULL, flipDirection);
 }

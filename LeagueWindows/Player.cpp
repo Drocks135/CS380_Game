@@ -15,6 +15,9 @@
 #define LEFT_SWING_ANIM 6
 #define RIGHT_SWING_ANIM 7
 
+// Player sprite is courtesy of Calciumtrice (via https://opengameart.org/content/simple-knight) and usable under 
+// the Creative Commons Attribution 3.0 license. No modifications to the sprites have been made.
+// Attribution notice from the website: Simple Knight by Calciumtrice, usable under Creative Commons Attribution 3.0 license.
 Player::Player(AnimData* inputAnimData) : AnimatedSprite("../assets/PlayerSpriteSheet.png", 1, inputAnimData, 0) {
 	actionState = 0;
 	currentImageScale = 3;

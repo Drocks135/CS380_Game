@@ -38,7 +38,7 @@ void HUD::update(double delta){
 		color.r = uni(rng);
 		color.b = uni(rng);
 		color.g = uni(rng);
-		surface = TTF_RenderText_Solid(stick, "CRAZY BOUNCING BANANA, EPIC!", color); 
+		surface = TTF_RenderText_Solid(stick, "Knight Boi Speen", color); 
 		texture = SDL_CreateTextureFromSurface(Engine::getRenderer(), surface);
 
 	}

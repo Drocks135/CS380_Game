@@ -163,14 +163,14 @@ int main(int argc, char** argv){
 	AnimFrameData* enemyFrameData = new AnimFrameData{ 0, 1 };
 	AnimData enemyAnimationData;
 	enemyAnimationData.frameInfo.push_back(enemyFrameData);
-	enemyAnimationData.images.push_back(new SDL_Rect{ 0, 0, 100, 100 });
+	enemyAnimationData.images.push_back(new SDL_Rect{ 0, 0, 32, 32 });
 
 	Vector2* startpos = new Vector2(200, 200);
 
 	Enemy* enemy = new Enemy(&enemyAnimationData, player, *startpos);
 
-	//one.addDrawable(enemy);
-	//one.addUpdateable(enemy);
+	one.addDrawable(enemy);
+	one.addUpdateable(enemy);
 
 	// Set the scene in the engine
 	engine.setScene(&one);
