@@ -25,7 +25,6 @@ public:
 	bool operator<(const Sprite& other);
 protected:
 	Vector3 velocity;
-	int actionState;
 	int layer;
 
 };

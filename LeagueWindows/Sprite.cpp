@@ -10,7 +10,6 @@ Sprite::Sprite(int sortingLayer) {
 }
 
 Sprite::Sprite(std::string path, int sortingLayer) {
-	actionState = 0;
 	layer = sortingLayer;
 
 	surface = IMG_Load(path.c_str());

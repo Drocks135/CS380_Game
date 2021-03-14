@@ -19,7 +19,6 @@
 // the Creative Commons Attribution 3.0 license. No modifications to the sprites have been made.
 // Attribution notice from the website: Simple Knight by Calciumtrice, usable under Creative Commons Attribution 3.0 license.
 Player::Player(AnimData* inputAnimData) : AnimatedSprite("../assets/PlayerSpriteSheet.png", 1, inputAnimData, 0) {
-	actionState = 0;
 	currentImageScale = 3;
 
 	movingDown = false;
