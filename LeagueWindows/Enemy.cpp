@@ -8,37 +8,26 @@
 
 // Enemy sprite is public domain, courtesy of  LazyDev (AKA Viktor Gorbulin).
 // Link to sprite: https://opengameart.org/content/ghost-animated
-Enemy::Enemy(AnimData* inputAnimData, Player* inputPlayer, Vector2 startPosition) : AnimatedSprite("../assets/EnemySpriteSheet.png", 1, inputAnimData, 0) {
+Enemy::Enemy(AnimData* inputAnimData, Player* inputPlayer, Vector2* startPosition) : AnimatedSprite("../assets/EnemySpriteSheet.png", 1, inputAnimData, 0) {
 	actionState = 0;
 	currentImageScale = 3;
 
 	currentPlayer = inputPlayer;
 
-	position.setX(startPosition.getX());
-	position.setY(startPosition.getY());
+	position.setX(startPosition->getX());
+	position.setY(startPosition->getY());
 
-	// respawn position will be 200 units offscreen in the direction from the center it started from
-	// so starting up and in the center  horizontally will respawn 200 units off screen vertically, cenetered
-	// on the x axis, and so on
+	// respawn position will be 200 units offscreen above/below the screen, depending on if the 
+	// enemy start position is on the top or bottom half of the screen to start
 	if (position.getY() < 384) {
 		respawnPosition.setY(-200);
 		respawnPosition.setX(position.getX());
 	}
-	else if (position.getY() > 384) {
+	else{
 		respawnPosition.setY(968);
 		respawnPosition.setX(position.getX());
 	}
-	// started in center, respawn to offscreen on the left/right
-	else {
-		if (respawnPosition.getX() < 512) {
-			respawnPosition.setX(-200);
-			respawnPosition.setY(position.getY());
-		}
-		else {
-			respawnPosition.setX(1224);
-			respawnPosition.setY(position.getY());
-		}
-	}
+	
 
 	flipDirection = SDL_FLIP_NONE;
 
@@ -64,7 +53,7 @@ void Enemy::update(double delta) {
 	int yDif = playerPosition.getY() - position.getY();
 
 	// TODO: FIX THIS SO THAT IT DIES WHEN IT GETS HIT BY THE SWORDS
-	if (std::abs(xDif) < 20 && std::abs(yDif) < 20) {
+	if (std::abs(xDif) < 25 && std::abs(yDif) < 25) {
 		Die();
 	}
 

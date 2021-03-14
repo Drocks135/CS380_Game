@@ -9,7 +9,7 @@
 
 class Enemy : public AnimatedSprite {
 public:
-	Enemy(AnimData* inputAnimData, Player* inputPlayer, Vector2 startPosition);
+	Enemy(AnimData* inputAnimData, Player* inputPlayer, Vector2* startPosition);
 	~Enemy();
 	void update(double delta);
 	void draw();

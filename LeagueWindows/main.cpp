@@ -176,12 +176,21 @@ int main(int argc, char** argv){
 
 
 
-	Vector2* startpos = new Vector2(200, 200);
+	Vector2* startpos1 = new Vector2(500, 100);
+	Vector2* startpos2 = new Vector2(20, 668);
+	Vector2* startpos3 = new Vector2(900, 668);
 
-	Enemy* enemy = new Enemy(&enemyAnimationData, player, *startpos);
+	Enemy* enemy1 = new Enemy(&enemyAnimationData, player, startpos1);
+	Enemy* enemy2 = new Enemy(&enemyAnimationData, player, startpos2);
+	Enemy* enemy3 = new Enemy(&enemyAnimationData, player, startpos3);
 
-	one.addDrawable(enemy);
-	one.addUpdateable(enemy);
+	one.addDrawable(enemy1);
+	one.addUpdateable(enemy1);
+	one.addDrawable(enemy2);
+	one.addUpdateable(enemy2);
+	one.addDrawable(enemy3);
+	one.addUpdateable(enemy3);
+
 
 	// Set the scene in the engine
 	engine.setScene(&one);
