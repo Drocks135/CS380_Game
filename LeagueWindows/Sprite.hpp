@@ -17,11 +17,13 @@ public:
 	void draw();
 	void setLayer(int sortingLayer);
 	int getLayer();
+
 	int getX();
 	int getY();
 	int getWidth();
 	int getHeight();
 
+	// overloads the < operator to compare sorting layer
 	bool operator<(const Sprite& other);
 protected:
 	Vector3 velocity;
