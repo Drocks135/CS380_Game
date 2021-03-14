@@ -28,6 +28,7 @@ struct AnimData {
 class AnimatedSprite : public Sprite {
 public:
 	AnimatedSprite(std::string spriteSheetPath, int sortingLayer, AnimData* inputAnimData, int startingAnimNum);
+	AnimatedSprite(std::string spriteSheetPath, int sortingLayer, int startingAnimNum);
 	~AnimatedSprite();
 
 	void draw();
@@ -49,6 +50,9 @@ protected:
 
 	// The factor by which we scale the current image as we draw it
 	double currentImageScale;
+
+	//Used to set up animation data after object has been instantiated
+	void setAnimData(AnimData *animData, int startingAnimNum);
 
 	// changes which animation is active (think changing from walk to sword swing)
 	void ChangeAnimation(int animationNum);

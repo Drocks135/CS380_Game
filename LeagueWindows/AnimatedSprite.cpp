@@ -19,6 +19,24 @@ AnimatedSprite::AnimatedSprite(std::string spriteSheetPath, int sortingLayer, An
 	currentImageScale = 1;
 }
 
+AnimatedSprite::AnimatedSprite(std::string spriteSheetPath, int sortingLayer, int startingAnimNum) : Sprite(spriteSheetPath, sortingLayer) {
+	// get animation info
+	animNum = startingAnimNum;
+	frameNum = 0;
+	frameTime = 0.0f;
+	animFPS = 12.0f;
+
+	// set the current animation
+	
+	currentImageScale = 1;
+}
+
+void AnimatedSprite::setAnimData(AnimData* animData, int startingAnimNum) {
+	animationData = animData;
+	int imageNum = animData->frameInfo.at(startingAnimNum)->startFrame;
+	currentImage = animData->images.at(imageNum);
+}
+
 void AnimatedSprite::ChangeAnimation(int animationNum) {
 	// set the new animation and make it start at the 0th frame
 	animNum = animationNum;

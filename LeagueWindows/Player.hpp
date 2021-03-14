@@ -9,7 +9,7 @@
 // as well as keeping track of game logic such as health and score.
 class Player : public AnimatedSprite {
 public:
-	Player(AnimData* inputAnimData);
+	Player();
 	~Player();
 	void update(double delta);
 
@@ -46,6 +46,7 @@ private:
 	// movment speed of the player
 	int playerSpeed;
 
+	void loadAnimData(AnimData& PlayerAnimationData);
 	// animation logic helpers for player movement
 	void EndAnimationBasedOnMovement(int animationEnding);
 	void CheckAndSetDownAnim();
