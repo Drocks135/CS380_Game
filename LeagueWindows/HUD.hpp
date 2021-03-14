@@ -16,6 +16,7 @@ class HUD : public Sprite {
 		~HUD();
 		void update(double delta);	
 	private:
+		// keep reference to layer to track score
 		Player* currentPlayer;
 		TTF_Font* stick;
 		SDL_Color color;

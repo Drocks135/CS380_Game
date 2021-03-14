@@ -4,6 +4,8 @@
 #include "Player.hpp"
 #include <string>
 
+// call sprite constructor with only sorting layer 
+// so we can take care of our own surface
 HUD::HUD(Player* inputPlayer) : Sprite(0){
 	stick = TTF_OpenFont("../assets/stick.ttf", 48);
 	if(stick == NULL){
@@ -29,11 +31,11 @@ HUD::HUD(Player* inputPlayer) : Sprite(0){
 }
 
 HUD::~HUD(){
-	SDL_DestroyTexture(texture);
-	SDL_FreeSurface(surface);
+	
 }
 
 void HUD::update(double delta){
+	// update HUD text with the current score from the player
 	int score = currentPlayer->getScore();
 	std::string scoreString = "Score: " + std::to_string(score);
 
