@@ -1,9 +1,10 @@
 #include "Engine.hpp"
 #include "HUD.hpp"
 #include <SDL_ttf.h>
-#include <random>
+#include "Player.hpp"
+#include <string>
 
-HUD::HUD(){
+HUD::HUD(Player* inputPlayer){
 	stick = TTF_OpenFont("../assets/stick.ttf", 48);
 	if(stick == NULL){
 		SDL_Log("No font. %s", TTF_GetError());
@@ -11,7 +12,7 @@ HUD::HUD(){
 	color.r=0;
 	color.g=0;
 	color.b=0;
-	surface = TTF_RenderText_Solid(stick, "Knight Boi Speen", color); 
+	surface = TTF_RenderText_Solid(stick, "Score: 0", color); 
 	if(surface == NULL){
 		SDL_Log("Can't create text. %s", SDL_GetError());
 	}
@@ -23,8 +24,8 @@ HUD::HUD(){
 	rect->y = 0;
 	rect->w = surface->w;
 	rect->h = surface->h;
-	rng=std::mt19937(rd());
-	uni=std::uniform_int_distribution<int>(0,255);
+
+	currentPlayer = inputPlayer;
 }
 
 HUD::~HUD(){
@@ -33,15 +34,11 @@ HUD::~HUD(){
 }
 
 void HUD::update(double delta){
-	elapsed += delta;
-	if(elapsed > 1){
-		color.r = uni(rng);
-		color.b = uni(rng);
-		color.g = uni(rng);
-		surface = TTF_RenderText_Solid(stick, "Knight Boi Speen", color); 
-		texture = SDL_CreateTextureFromSurface(Engine::getRenderer(), surface);
+	int score = currentPlayer->getScore();
+	std::string scoreString = "Score: " + std::to_string(score);
 
-	}
+	surface = TTF_RenderText_Solid(stick, scoreString.c_str(), color); 
+	texture = SDL_CreateTextureFromSurface(Engine::getRenderer(), surface);
 }
 
 void HUD::draw(){

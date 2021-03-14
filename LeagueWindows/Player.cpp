@@ -193,6 +193,15 @@ void Player::swingSword(double delta, bool keydown) {
 	}
 }
 
+// add 100 to the score
+void Player::incrementScore() {
+	score += 100;
+}
+
+int Player::getScore() {
+	return score;
+}
+
 void Player::EndAnimationBasedOnMovement(int animationEnding) {
 	// checks for movement on each of the axes to see which animation to display next.
 	// if there is movement in the opposite direction of the animation that is ending

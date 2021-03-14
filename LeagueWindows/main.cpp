@@ -20,11 +20,6 @@ int main(int argc, char** argv){
 	// Create an engine.  Must happen early, creates the renderer.
 	Engine engine(1024, 768);
 
-	// Add the HUD
-	HUD* h = new HUD();
-	one.addUpdateable(h);
-	one.addDrawable(h);
-
 	// Construct animation structs for the player object
 	// TODO: MAKE STATIC METHOD IN PLAYER TO DO THIS
 	AnimFrameData* down = new AnimFrameData{ 0, 5 };
@@ -190,6 +185,11 @@ int main(int argc, char** argv){
 	one.addUpdateable(enemy2);
 	one.addDrawable(enemy3);
 	one.addUpdateable(enemy3);
+
+	// Add the HUD
+	HUD* h = new HUD(player);
+	one.addUpdateable(h);
+	one.addDrawable(h);
 
 
 	// Set the scene in the engine

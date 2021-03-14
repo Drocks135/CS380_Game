@@ -111,7 +111,8 @@ void Enemy::draw() {
 	SDL_RenderCopyEx(Engine::getRenderer(), texture, currentImage, dst, 0.0, NULL, flipDirection);
 }
 
-// move enemy offscreen to its respawn point
+// move enemy offscreen to its respawn point, increment player score
 void Enemy::Die() {
 	position = respawnPosition;
+	currentPlayer->incrementScore();
 }

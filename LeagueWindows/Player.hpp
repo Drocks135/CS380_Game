@@ -15,11 +15,14 @@ public:
 	void up(double delta, bool keydown);
 	void down(double delta, bool keydown);
 	void swingSword(double delta, bool keydown);
+	void incrementScore();
+	int getScore();
 	int getHealth();
 	Vector3 getPlayerPosition();
 
 private: 
 	int health;
+	int score;
 	bool movingDown;
 	bool movingUp;
 	bool movingLeft;

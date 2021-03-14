@@ -6,21 +6,19 @@
 #include <SDL_ttf.h>
 #include "Interfaces.hpp"
 #include "Utility.hpp"
-#include <random>
+#include "Player.hpp"
+#include <string>
 
 class HUD : public DUGameObject {
 	public:
-		HUD();
+		HUD(Player* inputPlayer);
 		~HUD();
 		void update(double delta);
 		void draw();	
 	private:
+		Player* currentPlayer;
 		TTF_Font* stick;
 		SDL_Color color;
-		int elapsed;
-		std::random_device rd;
-		std::mt19937 rng;
-		std::uniform_int_distribution<int> uni;
 
 };
 
