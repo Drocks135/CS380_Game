@@ -27,6 +27,8 @@ Enemy::~Enemy() {
 
 void Enemy::update(double delta) {
 
+	UpdateAnimation(delta);
+
 	// update velocity to track the player
 	Vector3 playerPosition = currentPlayer->getPlayerPosition();
 

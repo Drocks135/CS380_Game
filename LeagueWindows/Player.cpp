@@ -33,6 +33,9 @@ Player::Player(AnimData* inputAnimData) : AnimatedSprite("../assets/PlayerSprite
 	health = 5;
 
 	playerSpeed = 150;
+
+	position.setX(512);
+	position.setY(384);
 }
 
 

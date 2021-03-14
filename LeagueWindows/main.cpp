@@ -160,10 +160,21 @@ int main(int argc, char** argv){
 	one.addKeyEvent(SDLK_SPACE, player_swing);
 
 	// make enemy animation structs
-	AnimFrameData* enemyFrameData = new AnimFrameData{ 0, 1 };
+	AnimFrameData* enemyMovementFrameData = new AnimFrameData{ 0, 4 };
 	AnimData enemyAnimationData;
-	enemyAnimationData.frameInfo.push_back(enemyFrameData);
-	enemyAnimationData.images.push_back(new SDL_Rect{ 0, 0, 32, 32 });
+	enemyAnimationData.frameInfo.push_back(enemyMovementFrameData);
+
+	SDL_Rect* enemyMove1 = new SDL_Rect{ 0, 64, 32, 32 };
+	SDL_Rect* enemyMove2 = new SDL_Rect{ 32, 64, 32, 32 };
+	SDL_Rect* enemyMove3 = new SDL_Rect{ 64, 64, 32, 32 };
+	SDL_Rect* enemyMove4 = new SDL_Rect{ 96, 64, 32, 32 };
+
+	enemyAnimationData.images.push_back(enemyMove1);
+	enemyAnimationData.images.push_back(enemyMove2);
+	enemyAnimationData.images.push_back(enemyMove3);
+	enemyAnimationData.images.push_back(enemyMove4);
+
+
 
 	Vector2* startpos = new Vector2(200, 200);
 
