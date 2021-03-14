@@ -16,6 +16,8 @@ Enemy::Enemy(AnimData* inputAnimData, Player* inputPlayer, Vector2 startPosition
 	position.setX(startPosition.getX());
 	position.setY(startPosition.getY());
 	flipDirection = SDL_FLIP_NONE;
+
+	speed = 100;
 }
 
 
@@ -37,35 +39,35 @@ void Enemy::update(double delta) {
 	if (playerPosition.getX() < position.getX()) {
 		// prevent bug where enemy bounces back and forth
 		// because it can't get to the player position
-		if (xDif > -100)
+		if (xDif > -speed)
 			xVelocity = xDif;
 		else
-			xVelocity = -100;
+			xVelocity = -speed;
 
 		// flip the sprite to face the player
 		flipDirection = SDL_FLIP_HORIZONTAL;
 	} 
 	else if (playerPosition.getX() > position.getX()) {
-		if (xDif < 100)
+		if (xDif < speed)
 			xVelocity = xDif;
 		else
-			xVelocity = 100;
+			xVelocity = speed;
 
 		// flip the sprite to face the player
 		flipDirection = SDL_FLIP_NONE;
 	}
 
 	if (playerPosition.getY() < position.getY()) {
-		if (yDif > -100)
+		if (yDif > -speed)
 			yVelocity = yDif;
 		else
-			yVelocity = -100;
+			yVelocity = -speed;
 	}
 	else if (playerPosition.getY() > position.getY()) {
-		if (yDif < 100)
+		if (yDif < speed)
 			yVelocity = yDif;
 		else
-			yVelocity = 100;
+			yVelocity = speed;
 	}
 
 	velocity.setX(xVelocity);

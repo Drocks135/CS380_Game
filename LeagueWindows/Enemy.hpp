@@ -18,6 +18,8 @@ private:
 	Player* currentPlayer;
 	// we'll flip the sprite depending on whether we're facing left or right
 	SDL_RendererFlip flipDirection;
+
+	int speed;
 };
 
 #endif

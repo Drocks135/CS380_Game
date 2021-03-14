@@ -30,6 +30,8 @@ private:
 	// will stop when this is occuring
 	bool swingingSword;
 
+	int playerSpeed;
+
 	void EndAnimationBasedOnMovement(int animationEnding);
 	void CheckAndSetDownAnim();
 	void CheckAndSetUpAnim();

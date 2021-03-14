@@ -31,6 +31,8 @@ Player::Player(AnimData* inputAnimData) : AnimatedSprite("../assets/PlayerSprite
 	swingingSword = false;
 
 	health = 5;
+
+	playerSpeed = 150;
 }
 
 
@@ -77,13 +79,13 @@ void Player::update(double delta) {
 		int yVelocity = 0;
 
 		if (movingDown)
-			yVelocity += 150;
+			yVelocity += playerSpeed;
 		if (movingUp)
-			yVelocity += -150;
+			yVelocity += -playerSpeed;
 		if (movingRight)
-			xVelocity += 150;
+			xVelocity += playerSpeed;
 		if (movingLeft)
-			xVelocity += -150;
+			xVelocity += -playerSpeed;
 
 		velocity.setX(xVelocity);
 		velocity.setY(yVelocity);
