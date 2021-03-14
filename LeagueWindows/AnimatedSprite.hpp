@@ -22,6 +22,9 @@ struct AnimData {
 	std::vector<AnimFrameData*> frameInfo;
 };
 
+// Subclass of sprite that provides animation functionality. Most functionality is 
+// adapted from the book "Game Programming Algorithms and Techniques" by 
+// Sanjay Madhav
 class AnimatedSprite : public Sprite {
 public:
 	AnimatedSprite(std::string spriteSheetPath, int sortingLayer, AnimData* inputAnimData, int startingAnimNum);
@@ -47,7 +50,10 @@ protected:
 	// The factor by which we scale the current image as we draw it
 	double currentImageScale;
 
+	// changes which animation is active (think changing from walk to sword swing)
 	void ChangeAnimation(int animationNum);
+
+	// updates the current animation (think from one part of walk cycle to the next)
 	void UpdateAnimation(float delta);
 	
 };
