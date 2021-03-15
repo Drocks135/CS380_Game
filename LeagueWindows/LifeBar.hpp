@@ -11,6 +11,9 @@ public:
 	~LifeBar();
 	void update(double delta);
 	void setLife(int health);
+private:
+	void loadAnimData(AnimData& HealthAnimationData);
 };
+
 
 #endif
