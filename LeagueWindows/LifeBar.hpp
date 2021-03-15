@@ -3,15 +3,17 @@
 
 #include "AnimatedSprite.hpp"
 #include "Utility.hpp"
+#include "Player.hpp"
 #include <SDL.h>
 
 class LifeBar : public AnimatedSprite {
 public:
-	LifeBar();
+	LifeBar(Player* player);
 	~LifeBar();
 	void update(double delta);
-	void setLife(int health);
+	void setLife();
 private:
+	Player* player;
 	void loadAnimData(AnimData& HealthAnimationData);
 };
 

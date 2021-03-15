@@ -3,7 +3,8 @@
 #include "LifeBar.hpp"
 #include <SDL.h>
 
-LifeBar::LifeBar() : AnimatedSprite("../assets/LifeBar.png", 1, 0) {
+LifeBar::LifeBar(Player* player) : AnimatedSprite("../assets/LifeBar.png", 1, 0) {
+	this->player = player;
 	position.setX(0);
 	position.setY(734);
 
@@ -51,10 +52,10 @@ LifeBar::~LifeBar() {
 	SDL_Log("Destrucing Player");
 }
 
-void LifeBar::setLife(int health) {
-	ChangeAnimation(health);
+void LifeBar::setLife() {
+	ChangeAnimation(player->getHealth());
 }
 
 void LifeBar::update(double delta) {
-	LifeBar::setLife(0);
+	LifeBar::setLife();
 }
