@@ -2,11 +2,14 @@
 #include "HUD.hpp"
 #include <SDL_ttf.h>
 #include "Player.hpp"
+#include "LifeBar.hpp"
 #include <string>
 
 // call sprite constructor with only sorting layer 
 // so we can take care of our own surface
 HUD::HUD(Player* inputPlayer) : Sprite(0){
+	LifeBar* playerHealth = new LifeBar();
+
 	stick = TTF_OpenFont("../assets/stick.ttf", 48);
 	if(stick == NULL){
 		SDL_Log("No font. %s", TTF_GetError());
@@ -26,6 +29,8 @@ HUD::HUD(Player* inputPlayer) : Sprite(0){
 	rect->y = 0;
 	rect->w = surface->w;
 	rect->h = surface->h;
+
+
 
 	currentPlayer = inputPlayer;
 }
