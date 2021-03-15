@@ -30,6 +30,8 @@ Player::Player() : AnimatedSprite("../assets/PlayerSpriteSheet.png", 1, 0) {
 	swingTimer = 0.0;
 	swingingSword = false;
 
+	swordHitbox = new SDL_Rect{ 0, 0, 0, 0 };
+
 	health = 5;
 	score = 0;
 
@@ -64,11 +66,13 @@ void Player::loadAnimData(AnimData &PlayerAnimationData) {
 	SDL_Rect* downRect3 = new SDL_Rect{ 67, 4, 18, 25 };
 	SDL_Rect* downRect4 = new SDL_Rect{ 99, 4, 18, 25 };
 	SDL_Rect* downRect5 = new SDL_Rect{ 131, 4, 18, 25 };
+
 	SDL_Rect* upRect1 = new SDL_Rect{ 10, 35, 18, 25 };
 	SDL_Rect* upRect2 = new SDL_Rect{ 42, 35, 18, 25 };
 	SDL_Rect* upRect3 = new SDL_Rect{ 74, 35, 18, 25 };
 	SDL_Rect* upRect4 = new SDL_Rect{ 106, 35, 18, 25 };
 	SDL_Rect* upRect5 = new SDL_Rect{ 138, 35, 18, 25 };
+
 	SDL_Rect* leftRect1 = new SDL_Rect{ 3, 67, 18, 25 };
 	SDL_Rect* leftRect2 = new SDL_Rect{ 35, 67, 18, 25 };
 	SDL_Rect* leftRect3 = new SDL_Rect{ 68, 67, 18, 25 };
@@ -326,6 +330,43 @@ Vector3 Player::getPlayerPosition() {
 // included so that the health bar HUD can track player heatlth
 int Player::getHealth() {
 	return this->health;
+}
+
+SDL_Rect* Player::getSwordHitbox() {
+	if (animNum == DOWN_SWING_ANIM) {
+		
+		swordHitbox->x = this->position.getX();
+		swordHitbox->y = this->position.getY() + this->currentImage->w / 2;
+		swordHitbox->w = this->currentImage->w;
+		swordHitbox->h = this->currentImage->h / 2;
+	}
+	else if (animNum == UP_SWING_ANIM) {
+		swordHitbox->x = this->position.getX();
+		swordHitbox->y = this->position.getY();
+		swordHitbox->w = this->currentImage->w;
+		swordHitbox->h = this->currentImage->h / 2;
+	}
+	else if (animNum == LEFT_SWING_ANIM) {
+		swordHitbox->x = this->position.getX();
+		swordHitbox->y = this->position.getY();
+		swordHitbox->w = this->currentImage->w / 2;
+		swordHitbox->h = this->currentImage->h;
+	}
+	else if (animNum == RIGHT_SWING_ANIM) {
+		swordHitbox->x = this->position.getX() + this->currentImage->w / 2;
+		swordHitbox->y = this->position.getY();
+		swordHitbox->w = this->currentImage->w / 2;
+		swordHitbox->h = this->currentImage->h;
+
+	}
+	else{
+		swordHitbox->x = 0;
+		swordHitbox->y = 0;
+		swordHitbox->w = 0;
+		swordHitbox->h = 0; 
+	}
+	
+	return swordHitbox;
 }
 
 void Player::EndAnimationBasedOnMovement(int animationEnding) {

@@ -21,6 +21,7 @@ public:
 	void swingSword(double delta, bool keydown);
 
 	void incrementScore();
+	SDL_Rect* getSwordHitbox();
 	int getScore();
 	int getHealth();
 	Vector3 getPlayerPosition();
@@ -39,12 +40,18 @@ private:
 	// indicates how long a swing will take
 	double swingTimer;
 
+	// hitbox for sword
+	SDL_Rect* swordHitbox;
+
 	// indicates whether we're in a sword swing. movement
 	// will stop when this is occuring
 	bool swingingSword;
 
 	// movment speed of the player
 	int playerSpeed;
+
+
+
 
 	void loadAnimData(AnimData& PlayerAnimationData);
 	// animation logic helpers for player movement
