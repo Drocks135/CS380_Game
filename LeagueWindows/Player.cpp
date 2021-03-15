@@ -28,6 +28,7 @@ Player::Player() : AnimatedSprite("../assets/PlayerSpriteSheet.png", 1, 0) {
 	movingRight = false;
 
 	swingTimer = 0.0;
+	invincibilityTimer = 0.0;
 	swingingSword = false;
 
 	swordHitbox = new SDL_Rect{ 0, 0, 0, 0 };
@@ -167,6 +168,14 @@ void Player::loadAnimData(AnimData &PlayerAnimationData) {
 }
 
 void Player::update(double delta) {
+
+	// Make the player invincible for a little bit after getting hurt
+	if (invincibilityTimer > 0) {
+		if (delta > invincibilityTimer)
+			invincibilityTimer = 0;
+		else
+			invincibilityTimer -= delta;
+	}
 
 	// check status of the sword swing - either branch will only 
 	// run if a sword swing has recently occured
@@ -316,9 +325,10 @@ void Player::swingSword(double delta, bool keydown) {
 }
 
 void Player::takeDamage() {
-	SDL_Log("taking damage...");
-	if (health > 0)
+	if (invincibilityTimer == 0 && health > 0) {
+		invincibilityTimer = 2.0;
 		health--;
+	}
 }
 
 // score can only go up or be reset, and only rises in increments of 100

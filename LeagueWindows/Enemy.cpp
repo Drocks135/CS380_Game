@@ -63,10 +63,10 @@ void Enemy::update(double delta) {
 	SDL_Rect* playerHitbox = currentPlayer->getPlayerHitbox();
 
 	bool hurtPlayerCollision = Collision::didCollide(this->position.getX(), this->position.getY(), this->currentImage->w, this->currentImage->h,
-		playerHitbox->x, playerHitbox->y, playerHitbox->w, playerHitbox->h);
+		playerPosition.getX(), playerPosition.getY(), playerHitbox->w, playerHitbox->h);
 
-	SDL_Log("player hitbox dimensions : %d %d\nsword hitbox origin(%d, %d)", playerHitbox->w, playerHitbox->h, playerHitbox->x, playerHitbox->y);
-	SDL_Log("enemy dimensions: %d %d enemy origin (%f, %f)", this->getWidth(), this->getHeight(), this->position.getX(), this->position.getY());
+	//SDL_Log("player hitbox dimensions : %d %d\nsword hitbox origin(%d, %d)", playerHitbox->w, playerHitbox->h, playerHitbox->x, playerHitbox->y);
+	//SDL_Log("enemy dimensions: %d %d enemy origin (%f, %f)", this->getWidth(), this->getHeight(), this->position.getX(), this->position.getY());
 
 	if (hurtPlayerCollision) {
 		

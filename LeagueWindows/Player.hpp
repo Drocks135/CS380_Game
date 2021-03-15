@@ -46,6 +46,7 @@ private:
 
 	// indicates how long a swing will take
 	double swingTimer;
+	double invincibilityTimer;
 
 	// hitbox for sword
 	SDL_Rect* swordHitbox;
