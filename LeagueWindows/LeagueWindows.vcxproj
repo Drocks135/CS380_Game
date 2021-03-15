@@ -20,31 +20,37 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp" />
+    <ClCompile Include="Background.cpp" />
     <ClCompile Include="Banana.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="GameOverScreen.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="Interfaces.cpp" />
+    <ClCompile Include="LifeBar.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Utility.cpp" />
-	<ClCompile Include="Collision.cpp" />
-	<ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="Enemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimatedSprite.hpp" />
+    <ClInclude Include="Background.hpp" />
     <ClInclude Include="Banana.hpp" />
     <ClInclude Include="Engine.hpp" />
+    <ClInclude Include="GameOverScreen.hpp" />
     <ClInclude Include="HUD.hpp" />
     <ClInclude Include="Interfaces.hpp" />
+    <ClInclude Include="LifeBar.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="Properties.hpp" />
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="Sprite.hpp" />
     <ClInclude Include="Utility.hpp" />
-	<ClCompile Include="Collision.hpp" />
-	<ClCompile Include="Enemy.hpp" />
+    <ClCompile Include="Collision.hpp" />
+    <ClCompile Include="Enemy.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
