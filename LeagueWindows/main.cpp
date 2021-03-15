@@ -8,6 +8,7 @@
 #include <SDL.h>
 #include <iostream>
 #include <vector>
+#include "LifeBar.hpp"
 
 int main(int argc, char** argv){
 	SDL_Log("Starting up, with following arguments:");
@@ -73,6 +74,10 @@ int main(int argc, char** argv){
 	HUD* h = new HUD(player);
 	one.addUpdateable(h);
 	one.addDrawable(h);
+
+	LifeBar* playerHealth = new LifeBar();
+	one.addDrawable(playerHealth);
+	one.addUpdateable(playerHealth);
 
 
 	// Set the scene in the engine

@@ -8,8 +8,6 @@
 // call sprite constructor with only sorting layer 
 // so we can take care of our own surface
 HUD::HUD(Player* inputPlayer) : Sprite(0){
-	LifeBar* playerHealth = new LifeBar();
-
 	stick = TTF_OpenFont("../assets/stick.ttf", 48);
 	if(stick == NULL){
 		SDL_Log("No font. %s", TTF_GetError());
