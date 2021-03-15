@@ -3,10 +3,20 @@
 #include "Sprite.hpp"
 #include "AnimatedSprite.hpp"
 #include "Player.hpp"
+#include "Enemy.hpp"
 #include "HUD.hpp"
 #include <SDL.h>
 #include <iostream>
 #include <vector>
+#include "Background.hpp"
+#include "LifeBar.hpp"
+#include "GameOverScreen.hpp"
+
+void GameOver(Scene* inputScene) {
+	GameOverScreen* gameover = new GameOverScreen();
+	inputScene->addDrawable(gameover);
+	inputScene->addUpdateable(gameover);
+}
 
 int main(int argc, char** argv){
 	SDL_Log("Starting up, with following arguments:");
@@ -19,68 +29,19 @@ int main(int argc, char** argv){
 	// Create an engine.  Must happen early, creates the renderer.
 	Engine engine(1024, 768);
 
-	// Add the HUD
-	HUD* h = new HUD();
-	one.addUpdateable(h);
-	one.addDrawable(h);
+	Background* background = new Background();
+	one.addUpdateable(background);
+	one.addDrawable(background);
 
 
-	/*// code taken from the textbook
-	struct AnimFrameData {
-		// The index of the first frame of an animation
-		int startFrame;
-		// The total number of frames for a particulare animation
-		int numFrames;
-	};
 
-	struct AnimData {
-		// Array of images for all animations for a sprite
-		std::vector<SDL_Rect*> images;
-		// Frame data array for each of the animations for the sprite
-		std::vector<AnimFrameData> frameInfo;
-	};*/
-
-	// Construct animation structs for the player object
-	// TODO: MAKE STATIC METHOD IN PLAYER TO DO THIS
-	AnimFrameData down;
-	down.startFrame = 0;
-	down.numFrames = 1;
-
-	AnimFrameData up;
-	up.startFrame = 1;
-	up.numFrames = 1;
-
-	AnimFrameData left;
-	left.startFrame = 2;
-	left.numFrames = 1;
-
-	AnimFrameData right;
-	right.startFrame = 3;
-	right.numFrames = 1;
-
-	
-
-	SDL_Rect* downRect = new SDL_Rect{ 4, 3, 18, 25 };
-	SDL_Rect* upRect = new SDL_Rect{10, 35, 17, 24};
-	SDL_Rect* leftRect = new SDL_Rect{ 3, 67, 18, 25 };
-	SDL_Rect* rightRect = new SDL_Rect{ 11, 99, 18, 25 };
-
-	AnimData PlayerAnimationData;
-	PlayerAnimationData.frameInfo.push_back(down);
-	PlayerAnimationData.frameInfo.push_back(up);
-	PlayerAnimationData.frameInfo.push_back(left);
-	PlayerAnimationData.frameInfo.push_back(right);
-	PlayerAnimationData.images.push_back(downRect);
-	PlayerAnimationData.images.push_back(upRect);
-	PlayerAnimationData.images.push_back(leftRect);
-	PlayerAnimationData.images.push_back(rightRect);
-
-	Player* player = new Player(&PlayerAnimationData);
+	Player* player = new Player(GameOver, &one);
 
 	auto player_up = [player](double delta, bool start) { player->up(delta, start); };
 	auto player_down = [player](double delta, bool start) { player->down(delta, start); };
 	auto player_left = [player](double delta, bool start) { player->left(delta, start); };
 	auto player_right = [player](double delta, bool start) { player->right(delta, start); };
+	auto player_swing = [player](double delta, bool start) { player->swingSword(delta, start); };
 	
 	one.addUpdateable(player);
 	one.addDrawable(player);
@@ -89,6 +50,49 @@ int main(int argc, char** argv){
 	one.addKeyEvent(SDLK_a, player_left);
 	one.addKeyEvent(SDLK_d, player_right);
 	one.addKeyEvent(SDLK_s, player_down);
+	one.addKeyEvent(SDLK_SPACE, player_swing);
+
+	// make enemy animation structs
+	AnimFrameData* enemyMovementFrameData = new AnimFrameData{ 0, 4 };
+	AnimData enemyAnimationData;
+	enemyAnimationData.frameInfo.push_back(enemyMovementFrameData);
+
+	SDL_Rect* enemyMove1 = new SDL_Rect{ 0, 64, 32, 32 };
+	SDL_Rect* enemyMove2 = new SDL_Rect{ 32, 64, 32, 32 };
+	SDL_Rect* enemyMove3 = new SDL_Rect{ 64, 64, 32, 32 };
+	SDL_Rect* enemyMove4 = new SDL_Rect{ 96, 64, 32, 32 };
+
+	enemyAnimationData.images.push_back(enemyMove1);
+	enemyAnimationData.images.push_back(enemyMove2);
+	enemyAnimationData.images.push_back(enemyMove3);
+	enemyAnimationData.images.push_back(enemyMove4);
+
+
+
+	Vector2* startpos1 = new Vector2(500, 100);
+	Vector2* startpos2 = new Vector2(20, 668);
+	Vector2* startpos3 = new Vector2(900, 668);
+
+	Enemy* enemy1 = new Enemy(&enemyAnimationData, player, startpos1);
+	Enemy* enemy2 = new Enemy(&enemyAnimationData, player, startpos2);
+	Enemy* enemy3 = new Enemy(&enemyAnimationData, player, startpos3);
+
+	one.addDrawable(enemy1);
+	one.addUpdateable(enemy1);
+	one.addDrawable(enemy2);
+	one.addUpdateable(enemy2);
+	one.addDrawable(enemy3);
+	one.addUpdateable(enemy3);
+
+	// Add the HUD
+	HUD* h = new HUD(player);
+	one.addUpdateable(h);
+	one.addDrawable(h);
+
+	LifeBar* playerHealth = new LifeBar(player);
+	one.addDrawable(playerHealth);
+	one.addUpdateable(playerHealth);
+
 
 	// Set the scene in the engine
 	engine.setScene(&one);

@@ -9,6 +9,7 @@
 
 class Sprite : public DUGameObject {
 public:
+	Sprite(int sortingLayer);
 	Sprite(std::string path, int sortingLayer);
 	Sprite(SDL_Surface* ptrSurface, int sortingLayer);
 	virtual ~Sprite();
@@ -17,10 +18,16 @@ public:
 	void setLayer(int sortingLayer);
 	int getLayer();
 
+	int getX();
+	int getY();
+	int getWidth();
+	int getHeight();
+
+
+	// overloads the < operator to compare sorting layer
 	bool operator<(const Sprite& other);
 protected:
 	Vector3 velocity;
-	int actionState;
 	int layer;
 
 };

@@ -6,22 +6,22 @@
 #include <SDL_ttf.h>
 #include "Interfaces.hpp"
 #include "Utility.hpp"
-#include <random>
+#include "Player.hpp"
+#include "Sprite.hpp"
+#include <string>
 
-class HUD : public DUGameObject {
+class HUD : public Sprite {
 	public:
-		HUD();
+		HUD(Player* inputPlayer);
 		~HUD();
-		void update(double delta);
-		void draw();	
+		void update(double delta);	
 	private:
+		// keep reference to layer to track score
+		Player* currentPlayer;
 		TTF_Font* stick;
 		SDL_Color color;
-		int elapsed;
-		std::random_device rd;
-		std::mt19937 rng;
-		std::uniform_int_distribution<int> uni;
 
+		int lastScore;
 };
 
 #endif

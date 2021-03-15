@@ -29,6 +29,8 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Utility.cpp" />
+	<ClCompile Include="Collision.cpp" />
+	<ClCompile Include="Enemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimatedSprite.hpp" />
@@ -41,6 +43,8 @@
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="Sprite.hpp" />
     <ClInclude Include="Utility.hpp" />
+	<ClCompile Include="Collision.hpp" />
+	<ClCompile Include="Enemy.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

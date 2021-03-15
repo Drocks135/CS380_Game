@@ -3,6 +3,12 @@
 #include <string>
 #include <SDL.h>
 
+// constructor mainly for HUD, where there is no path
+// and the surface is taken care of in the constructor
+Sprite::Sprite(int sortingLayer) {
+	layer = sortingLayer;
+}
+
 Sprite::Sprite(std::string path, int sortingLayer) {
 	layer = sortingLayer;
 
@@ -53,12 +59,12 @@ Sprite::~Sprite() {
 }
 
 void Sprite::draw() {
-	SDL_Rect* dst = new SDL_Rect();
-	dst->x = position.getX();
-	dst->y = position.getY();
-	dst->w = rect->w;
-	dst->h = rect->h;
-	SDL_RenderCopy(Engine::getRenderer(), texture, NULL, dst);
+	SDL_Rect dst;
+	dst.x = position.getX();
+	dst.y = position.getY();
+	dst.w = rect->w;
+	dst.h = rect->h;
+	SDL_RenderCopy(Engine::getRenderer(), texture, NULL, &dst);
 }
 
 void Sprite::setLayer(int sortingLayer) {
@@ -72,6 +78,22 @@ void Sprite::setLayer(int sortingLayer) {
 
 int Sprite::getLayer() {
 	return layer;
+}
+
+int Sprite::getX() {
+	return rect->x;
+}
+
+int Sprite::getY() {
+	return rect->y;
+}
+
+int Sprite::getWidth() {
+	return rect->w;
+}
+
+int Sprite::getHeight() {
+	return rect->h;
 }
 
 // Comparator based on sorting layer
