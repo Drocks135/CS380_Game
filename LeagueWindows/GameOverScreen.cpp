@@ -18,10 +18,10 @@ void GameOverScreen::update(double delta) {
 }
 
 void GameOverScreen::draw() {
-	SDL_Rect* dst = new SDL_Rect();
-	dst->x = position.getX();
-	dst->y = position.getY();
-	dst->w = rect->w * 1.28;
-	dst->h = rect->h * 1.231;
-	SDL_RenderCopy(Engine::getRenderer(), texture, NULL, dst);
+	SDL_Rect dst;
+	dst.x = position.getX();
+	dst.y = position.getY();
+	dst.w = rect->w * 0.52;
+	dst.h = rect->h * 0.65;
+	SDL_RenderCopy(Engine::getRenderer(), texture, NULL, &dst);
 }

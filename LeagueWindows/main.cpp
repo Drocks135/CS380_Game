@@ -12,6 +12,12 @@
 #include "LifeBar.hpp"
 #include "GameOverScreen.hpp"
 
+void GameOver(Scene* inputScene) {
+	GameOverScreen* gameover = new GameOverScreen();
+	inputScene->addDrawable(gameover);
+	inputScene->addUpdateable(gameover);
+}
+
 int main(int argc, char** argv){
 	SDL_Log("Starting up, with following arguments:");
 	for(int i=0; i<argc; ++i){
@@ -29,7 +35,7 @@ int main(int argc, char** argv){
 
 
 
-	Player* player = new Player();
+	Player* player = new Player(GameOver, &one);
 
 	auto player_up = [player](double delta, bool start) { player->up(delta, start); };
 	auto player_down = [player](double delta, bool start) { player->down(delta, start); };

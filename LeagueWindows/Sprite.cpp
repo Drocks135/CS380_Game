@@ -59,12 +59,12 @@ Sprite::~Sprite() {
 }
 
 void Sprite::draw() {
-	SDL_Rect* dst = new SDL_Rect();
-	dst->x = position.getX();
-	dst->y = position.getY();
-	dst->w = rect->w;
-	dst->h = rect->h;
-	SDL_RenderCopy(Engine::getRenderer(), texture, NULL, dst);
+	SDL_Rect dst;
+	dst.x = position.getX();
+	dst.y = position.getY();
+	dst.w = rect->w;
+	dst.h = rect->h;
+	SDL_RenderCopy(Engine::getRenderer(), texture, NULL, &dst);
 }
 
 void Sprite::setLayer(int sortingLayer) {

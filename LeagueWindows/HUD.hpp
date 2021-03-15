@@ -20,6 +20,8 @@ class HUD : public Sprite {
 		Player* currentPlayer;
 		TTF_Font* stick;
 		SDL_Color color;
+
+		int lastScore;
 };
 
 #endif

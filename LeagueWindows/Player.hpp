@@ -5,12 +5,13 @@
 #include "Utility.hpp"
 #include <functional>
 #include <SDL.h>
+#include "Scene.hpp"
 
 // The game's player class. Contains logic for all game input,
 // as well as keeping track of game logic such as health and score.
 class Player : public AnimatedSprite {
 public:
-	Player();
+	Player(std::function<void(Scene*)> GameOverFunction, Scene* inputScene);
 	~Player();
 	void update(double delta);
 
@@ -58,6 +59,10 @@ private:
 
 	// movment speed of the player
 	int playerSpeed;
+
+	// function to call on game over
+	std::function<void(Scene*)> gameOver;
+	Scene* currentScene;
 
 
 

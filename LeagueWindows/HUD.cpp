@@ -28,7 +28,7 @@ HUD::HUD(Player* inputPlayer) : Sprite(0){
 	rect->w = surface->w;
 	rect->h = surface->h;
 
-
+	lastScore = 0;
 
 	currentPlayer = inputPlayer;
 }
@@ -40,9 +40,17 @@ HUD::~HUD(){
 void HUD::update(double delta){
 	// update HUD text with the current score from the player
 	int score = currentPlayer->getScore();
-	std::string scoreString = "Score: " + std::to_string(score);
 
-	surface = TTF_RenderText_Solid(stick, scoreString.c_str(), color); 
-	texture = SDL_CreateTextureFromSurface(Engine::getRenderer(), surface);
+	if (score > lastScore) {
+		std::string scoreString = "Score: " + std::to_string(score);
+
+		lastScore = score;
+
+		SDL_DestroyTexture(texture);
+		SDL_FreeSurface(surface);
+
+		surface = TTF_RenderText_Solid(stick, scoreString.c_str(), color);
+		texture = SDL_CreateTextureFromSurface(Engine::getRenderer(), surface);
+	}
 }
 

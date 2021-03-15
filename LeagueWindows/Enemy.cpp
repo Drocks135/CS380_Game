@@ -117,12 +117,12 @@ void Enemy::update(double delta) {
 
 // overrides AnimatedSprite to make use of RenderCopyEx to flip our sprite
 void Enemy::draw() {
-	SDL_Rect* dst = new SDL_Rect();
-	dst->x = position.getX();
-	dst->y = position.getY();
-	dst->w = currentImage->w * currentImageScale;
-	dst->h = currentImage->h * currentImageScale;
-	SDL_RenderCopyEx(Engine::getRenderer(), texture, currentImage, dst, 0.0, NULL, flipDirection);
+	SDL_Rect dst;
+	dst.x = position.getX();
+	dst.y = position.getY();
+	dst.w = currentImage->w * currentImageScale;
+	dst.h = currentImage->h * currentImageScale;
+	SDL_RenderCopyEx(Engine::getRenderer(), texture, currentImage, &dst, 0.0, NULL, flipDirection);
 }
 
 // move enemy offscreen to its respawn point, increment player score

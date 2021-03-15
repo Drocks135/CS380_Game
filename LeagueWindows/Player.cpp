@@ -2,6 +2,7 @@
 #include "AnimatedSprite.hpp"
 #include "Utility.hpp";
 #include "Player.hpp"
+#include "Scene.hpp"
 #include <SDL.h>
 #include <string>
 #include <functional>
@@ -19,7 +20,10 @@
 // Player sprite is courtesy of Calciumtrice (via https://opengameart.org/content/simple-knight) and usable under 
 // the Creative Commons Attribution 3.0 license. No modifications to the sprites have been made.
 // Attribution notice from the website: Simple Knight by Calciumtrice, usable under Creative Commons Attribution 3.0 license.
-Player::Player() : AnimatedSprite("../assets/PlayerSpriteSheet.png", 1, 0) {
+Player::Player(std::function<void(Scene*)> GameOverFunction, Scene* inputScene) : AnimatedSprite("../assets/PlayerSpriteSheet.png", 1, 0) {
+	gameOver = GameOverFunction;
+	currentScene = inputScene;
+
 	// scale our sprites to fit well within our screen
 	currentImageScale = 3;
 
@@ -329,6 +333,9 @@ void Player::takeDamage() {
 	if (invincibilityTimer == 0 && health > 0) {
 		invincibilityTimer = 2.0;
 		health--;
+		if (health == 0) {
+			gameOver(currentScene);
+		}
 	}
 }
 

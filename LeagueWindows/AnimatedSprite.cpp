@@ -72,13 +72,13 @@ void AnimatedSprite::UpdateAnimation(float delta) {
 }
 
 void AnimatedSprite::draw() {
-	SDL_Rect* dst = new SDL_Rect();
-	dst->x = position.getX();
-	dst->y = position.getY();
-	dst->w = currentImage->w * currentImageScale;
-	dst->h = currentImage->h * currentImageScale;
+	SDL_Rect dst;
+	dst.x = position.getX();
+	dst.y = position.getY();
+	dst.w = currentImage->w * currentImageScale;
+	dst.h = currentImage->h * currentImageScale;
 	// draw only the part of the spritesheet corresponding to our current animation 
-	SDL_RenderCopy(Engine::getRenderer(), texture, currentImage, dst);
+	SDL_RenderCopy(Engine::getRenderer(), texture, currentImage, &dst);
 }
 
 AnimatedSprite::~AnimatedSprite() {
