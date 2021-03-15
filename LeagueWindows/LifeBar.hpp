@@ -14,6 +14,7 @@ public:
 	void setLife();
 private:
 	Player* player;
+	int currentHealth;
 	void loadAnimData(AnimData& HealthAnimationData);
 };
 

@@ -5,6 +5,7 @@
 
 LifeBar::LifeBar(Player* player) : AnimatedSprite("../assets/LifeBar.png", 1, 0) {
 	this->player = player;
+	currentHealth = this->player->getHealth();
 	position.setX(0);
 	position.setY(734);
 
@@ -53,7 +54,10 @@ LifeBar::~LifeBar() {
 }
 
 void LifeBar::setLife() {
-	ChangeAnimation(player->getHealth());
+	if (currentHealth != player->getHealth()) {
+		currentHealth = player->getHealth();
+		ChangeAnimation(player->getHealth());
+	}
 }
 
 void LifeBar::update(double delta) {
