@@ -54,11 +54,11 @@ void Enemy::update(double delta) {
 
 	// TODO: FIX THIS SO THAT IT DIES WHEN IT GETS HIT BY THE SWORDS
 	SDL_Rect* hb = currentPlayer->getSwordHitbox();
-	bool collision = Collision::didCollide(this->position.getX(), this->position.getY(), this->getWidth(), this->getHeight(), hb->x, hb->y, hb->w, hb->h);
+	bool collision = Collision::didCollide(this->position.getX(), this->position.getY(), this->currentImage->w, this->currentImage->h, hb->x, hb->y, hb->w, hb->h);
 	
 	if (collision) {
-		SDL_Log("enemy x %f\n", position.getX());
-		SDL_Log("enemy y %f\n", position.getY());
+		SDL_Log("sword hitbox dimensions: %d %d\nsword hitbox origin (%d, %d)", hb->w, hb->h, hb->x, hb->y);
+		SDL_Log("enemy dimensions: %d %d\nenemy origin (%f, %f)", this->getWidth(), this->getHeight(), this->position.getX(), this->position.getY());
 		Die();
 	}
 	// END TODO

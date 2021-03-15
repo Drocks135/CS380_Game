@@ -335,28 +335,28 @@ int Player::getHealth() {
 SDL_Rect* Player::getSwordHitbox() {
 	if (animNum == DOWN_SWING_ANIM) {
 		
-		swordHitbox->x = this->position.getX();
-		swordHitbox->y = this->position.getY() + this->currentImage->w / 2;
-		swordHitbox->w = this->currentImage->w;
-		swordHitbox->h = this->currentImage->h / 2;
+		swordHitbox->x = this->position.getX() - 15;
+		swordHitbox->y = this->position.getY() + this->currentImage->w;
+		swordHitbox->w = this->currentImage->w + 30;
+		swordHitbox->h = 75;
 	}
 	else if (animNum == UP_SWING_ANIM) {
-		swordHitbox->x = this->position.getX();
-		swordHitbox->y = this->position.getY();
-		swordHitbox->w = this->currentImage->w;
-		swordHitbox->h = this->currentImage->h / 2;
+		swordHitbox->x = this->position.getX() - 15;
+		swordHitbox->y = this->position.getY() - 50;
+		swordHitbox->w = this->currentImage->w + 30;
+		swordHitbox->h = 75;
 	}
 	else if (animNum == LEFT_SWING_ANIM) {
-		swordHitbox->x = this->position.getX();
-		swordHitbox->y = this->position.getY();
-		swordHitbox->w = this->currentImage->w / 2;
-		swordHitbox->h = this->currentImage->h;
+		swordHitbox->x = this->position.getX() - 50;
+		swordHitbox->y = this->position.getY() - 15;
+		swordHitbox->w = 75;
+		swordHitbox->h = this->currentImage->h + 30;
 	}
 	else if (animNum == RIGHT_SWING_ANIM) {
-		swordHitbox->x = this->position.getX() + this->currentImage->w / 2;
-		swordHitbox->y = this->position.getY();
-		swordHitbox->w = this->currentImage->w / 2;
-		swordHitbox->h = this->currentImage->h;
+		swordHitbox->x = this->position.getX() + this->currentImage->w;
+		swordHitbox->y = this->position.getY() - 15;
+		swordHitbox->w = 75;
+		swordHitbox->h = this->currentImage->h + 30;
 
 	}
 	else{
