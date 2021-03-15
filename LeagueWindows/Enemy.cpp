@@ -52,16 +52,26 @@ void Enemy::update(double delta) {
 	int xDif = playerPosition.getX() - position.getX();
 	int yDif = playerPosition.getY() - position.getY();
 
-	// TODO: FIX THIS SO THAT IT DIES WHEN IT GETS HIT BY THE SWORDS
 	SDL_Rect* hb = currentPlayer->getSwordHitbox();
 	bool collision = Collision::didCollide(this->position.getX(), this->position.getY(), this->currentImage->w, this->currentImage->h, hb->x, hb->y, hb->w, hb->h);
+
 	
 	if (collision) {
-		SDL_Log("sword hitbox dimensions: %d %d\nsword hitbox origin (%d, %d)", hb->w, hb->h, hb->x, hb->y);
-		SDL_Log("enemy dimensions: %d %d\nenemy origin (%f, %f)", this->getWidth(), this->getHeight(), this->position.getX(), this->position.getY());
 		Die();
 	}
-	// END TODO
+
+	SDL_Rect* playerHitbox = currentPlayer->getPlayerHitbox();
+
+	bool hurtPlayerCollision = Collision::didCollide(this->position.getX(), this->position.getY(), this->currentImage->w, this->currentImage->h,
+		playerHitbox->x, playerHitbox->y, playerHitbox->w, playerHitbox->h);
+
+	SDL_Log("player hitbox dimensions : %d %d\nsword hitbox origin(%d, %d)", playerHitbox->w, playerHitbox->h, playerHitbox->x, playerHitbox->y);
+	SDL_Log("enemy dimensions: %d %d enemy origin (%f, %f)", this->getWidth(), this->getHeight(), this->position.getX(), this->position.getY());
+
+	if (hurtPlayerCollision) {
+		
+		currentPlayer->takeDamage();
+	}
 
 	if (playerPosition.getX() < position.getX()) {
 		// prevent bug where enemy bounces back and forth

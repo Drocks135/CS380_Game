@@ -244,6 +244,9 @@ void Player::update(double delta) {
 	}
 }
 
+
+
+
 // all movment functions have the same sort of flow:
 // if the key is being pressed down, set the flag for moving in that 
 // direction to true, and update the animation to that direction (unless
@@ -312,6 +315,12 @@ void Player::swingSword(double delta, bool keydown) {
 	}
 }
 
+void Player::takeDamage() {
+	SDL_Log("taking damage...");
+	if (health > 0)
+		health--;
+}
+
 // score can only go up or be reset, and only rises in increments of 100
 void Player::incrementScore() {
 	score += 100;
@@ -330,6 +339,10 @@ Vector3 Player::getPlayerPosition() {
 // included so that the health bar HUD can track player heatlth
 int Player::getHealth() {
 	return this->health;
+}
+
+SDL_Rect* Player::getPlayerHitbox() {
+	return currentImage;
 }
 
 SDL_Rect* Player::getSwordHitbox() {

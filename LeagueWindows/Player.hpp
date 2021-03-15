@@ -21,10 +21,17 @@ public:
 	void swingSword(double delta, bool keydown);
 
 	void incrementScore();
-	SDL_Rect* getSwordHitbox();
+	void takeDamage();
+
 	int getScore();
 	int getHealth();
+
+	SDL_Rect* getSwordHitbox();
+	
 	Vector3 getPlayerPosition();
+
+	SDL_Rect* getPlayerHitbox();
+	
 
 private: 
 	// player game logic variables
