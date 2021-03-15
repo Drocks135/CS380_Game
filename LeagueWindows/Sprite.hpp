@@ -23,6 +23,7 @@ public:
 	int getWidth();
 	int getHeight();
 
+
 	// overloads the < operator to compare sorting layer
 	bool operator<(const Sprite& other);
 protected:

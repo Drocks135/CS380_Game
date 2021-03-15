@@ -3,6 +3,7 @@
 #include "AnimatedSprite.hpp"
 #include "Player.hpp"
 #include "Enemy.hpp"
+#include "Collision.hpp"
 #include <SDL.h>
 #include <cmath>
 
@@ -52,7 +53,12 @@ void Enemy::update(double delta) {
 	int yDif = playerPosition.getY() - position.getY();
 
 	// TODO: FIX THIS SO THAT IT DIES WHEN IT GETS HIT BY THE SWORDS
-	if (std::abs(xDif) < 25 && std::abs(yDif) < 25) {
+	SDL_Rect* hb = currentPlayer->getSwordHitbox();
+	bool collision = Collision::didCollide(this->position.getX(), this->position.getY(), this->getWidth(), this->getHeight(), hb->x, hb->y, hb->w, hb->h);
+	
+	if (collision) {
+		SDL_Log("enemy x %f\n", position.getX());
+		SDL_Log("enemy y %f\n", position.getY());
 		Die();
 	}
 	// END TODO
