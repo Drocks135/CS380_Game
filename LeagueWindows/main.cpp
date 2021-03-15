@@ -80,7 +80,7 @@ int main(int argc, char** argv){
 	one.addUpdateable(h);
 	one.addDrawable(h);
 
-	LifeBar* playerHealth = new LifeBar();
+	LifeBar* playerHealth = new LifeBar(player);
 	one.addDrawable(playerHealth);
 	one.addUpdateable(playerHealth);
 
