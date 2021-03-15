@@ -15,7 +15,7 @@ LifeBar::LifeBar(Player* player) : AnimatedSprite("../assets/LifeBar.png", 1, 0)
 
 	AnimData* HealthAnimationData = new AnimData();
 	loadAnimData(*HealthAnimationData);
-	AnimatedSprite::setAnimData(HealthAnimationData, 0);
+	AnimatedSprite::setAnimData(HealthAnimationData, 5);
 }
 
 void LifeBar::loadAnimData(AnimData& HealthAnimationData) {
@@ -33,6 +33,7 @@ void LifeBar::loadAnimData(AnimData& HealthAnimationData) {
 	AnimFrameData* oneHP = new AnimFrameData{ 4, 1 };
 	AnimFrameData* zeroHP = new AnimFrameData{ 5, 1 };
 
+	
 	HealthAnimationData.images.push_back(zeroHealth);
 	HealthAnimationData.images.push_back(oneHealth);
 	HealthAnimationData.images.push_back(twoHealth);
@@ -40,12 +41,12 @@ void LifeBar::loadAnimData(AnimData& HealthAnimationData) {
 	HealthAnimationData.images.push_back(fourHealth);
 	HealthAnimationData.images.push_back(fiveHealth);
 	
-	HealthAnimationData.frameInfo.push_back(zeroHP);
-	HealthAnimationData.frameInfo.push_back(oneHP);
-	HealthAnimationData.frameInfo.push_back(twoHP);
-	HealthAnimationData.frameInfo.push_back(threeHP);
-	HealthAnimationData.frameInfo.push_back(fourHP);
 	HealthAnimationData.frameInfo.push_back(fiveHP);
+	HealthAnimationData.frameInfo.push_back(fourHP);
+	HealthAnimationData.frameInfo.push_back(threeHP);
+	HealthAnimationData.frameInfo.push_back(twoHP);
+	HealthAnimationData.frameInfo.push_back(oneHP);
+	HealthAnimationData.frameInfo.push_back(zeroHP);
 }
 
 
