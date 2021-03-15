@@ -10,6 +10,7 @@
 #include <vector>
 #include "Background.hpp"
 #include "LifeBar.hpp"
+#include "GameOverScreen.hpp"
 
 int main(int argc, char** argv){
 	SDL_Log("Starting up, with following arguments:");
@@ -25,6 +26,8 @@ int main(int argc, char** argv){
 	Background* background = new Background();
 	one.addUpdateable(background);
 	one.addDrawable(background);
+
+
 
 	Player* player = new Player();
 

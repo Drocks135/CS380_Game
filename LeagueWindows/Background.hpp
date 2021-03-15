@@ -3,6 +3,7 @@
 
 #include "Sprite.hpp"
 #include "Utility.hpp"
+#include "Engine.hpp"
 #include <SDL.h>
 
 // The background sprite for the game

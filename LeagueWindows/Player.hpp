@@ -3,6 +3,7 @@
 
 #include "AnimatedSprite.hpp"
 #include "Utility.hpp"
+#include <functional>
 #include <SDL.h>
 
 // The game's player class. Contains logic for all game input,

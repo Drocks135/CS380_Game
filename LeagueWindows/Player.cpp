@@ -4,6 +4,7 @@
 #include "Player.hpp"
 #include <SDL.h>
 #include <string>
+#include <functional>
 
 #define DOWN_ANIM 0
 #define UP_ANIM 1

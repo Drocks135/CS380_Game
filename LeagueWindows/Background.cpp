@@ -4,6 +4,8 @@
 #include <SDL.h>
 #include "Background.hpp"
 
+// Background sprite is open-source (no licensing available) from https://jestan.itch.io/classic-rpg
+// In a comment, the creator specifies that the asset is free to use.
 Background::Background() : Sprite("../assets/Background.jpg", 0){
 
 }
