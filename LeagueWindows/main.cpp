@@ -8,6 +8,7 @@
 #include <SDL.h>
 #include <iostream>
 #include <vector>
+#include "Background.hpp"
 #include "LifeBar.hpp"
 
 int main(int argc, char** argv){
@@ -20,6 +21,10 @@ int main(int argc, char** argv){
 	Scene one;
 	// Create an engine.  Must happen early, creates the renderer.
 	Engine engine(1024, 768);
+
+	Background* background = new Background();
+	one.addUpdateable(background);
+	one.addDrawable(background);
 
 	Player* player = new Player();
 
