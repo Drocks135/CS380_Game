@@ -2,6 +2,7 @@
 #include "HUD.hpp"
 #include <SDL_ttf.h>
 #include "Player.hpp"
+#include "LifeBar.hpp"
 #include <string>
 
 // call sprite constructor with only sorting layer 
@@ -26,6 +27,8 @@ HUD::HUD(Player* inputPlayer) : Sprite(0){
 	rect->y = 0;
 	rect->w = surface->w;
 	rect->h = surface->h;
+
+
 
 	currentPlayer = inputPlayer;
 }
