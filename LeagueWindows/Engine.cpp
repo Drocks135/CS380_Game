@@ -74,7 +74,7 @@ void Engine::run(){
 			if(event.type == SDL_KEYDOWN || event.type == SDL_KEYUP){
 				for(auto f = currentScene->keyEvents.begin(); f != currentScene->keyEvents.end(); ++f){
 					if(event.key.keysym.sym == (*f).first){
-						(*f).second(gameDelta);
+						(*f).second(gameDelta, (event.type == SDL_KEYDOWN));
 						//SDL_Log("Dispatched event. %d, %f", delta, gameDelta);
 					}
 				}

@@ -19,6 +19,6 @@ void Scene::addDrawable(Drawable* obj){
 	this->drawables.push_back(obj);
 }
 
-void Scene::addKeyEvent(SDL_Keycode key, Callback fn){
+void Scene::addKeyEvent(SDL_Keycode key, KeypressCallback fn){
 	keyEvents.push_back(std::make_pair(key, fn));	
 }

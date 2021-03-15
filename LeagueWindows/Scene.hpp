@@ -14,12 +14,12 @@ class Scene {
 		~Scene();
 		void addUpdateable(Updateable* obj);
 		void addDrawable(Drawable* obj);
-		void addKeyEvent(SDL_Keycode key, Callback fn);
+		void addKeyEvent(SDL_Keycode key, KeypressCallback fn);
 
 	private:
 		std::vector<Updateable*> updateables;
 		std::vector<Drawable*> drawables;
-		std::vector<std::pair<SDL_Keycode, Callback > > keyEvents;
+		std::vector<std::pair<SDL_Keycode, KeypressCallback > > keyEvents;
 
 	friend class Engine;
 };

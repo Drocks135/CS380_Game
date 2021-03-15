@@ -3,20 +3,4 @@ C:\Users\Aaron\Desktop\Winter2021\GameDev\CS380_Game\LeagueWindows\AnimatedSprit
 C:\Users\Aaron\Desktop\Winter2021\GameDev\CS380_Game\LeagueWindows\AnimatedSprite.cpp(48,19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\Aaron\Desktop\Winter2021\GameDev\CS380_Game\LeagueWindows\AnimatedSprite.cpp(54,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 C:\Users\Aaron\Desktop\Winter2021\GameDev\CS380_Game\LeagueWindows\AnimatedSprite.cpp(55,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  Banana.cpp
-  Engine.cpp
-C:\Users\Aaron\Desktop\Winter2021\GameDev\CS380_Game\LeagueWindows\Engine.cpp(59,24): warning C4244: 'argument': conversion from 'double' to 'Uint32', possible loss of data
-  HUD.cpp
-C:\Users\Aaron\Desktop\Winter2021\GameDev\CS380_Game\LeagueWindows\HUD.cpp(36,18): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
-C:\Users\Aaron\Desktop\Winter2021\GameDev\CS380_Game\LeagueWindows\HUD.cpp(49,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\Aaron\Desktop\Winter2021\GameDev\CS380_Game\LeagueWindows\HUD.cpp(50,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  Interfaces.cpp
-  main.cpp
-  Player.cpp
-  Scene.cpp
-  Sprite.cpp
-C:\Users\Aaron\Desktop\Winter2021\GameDev\CS380_Game\LeagueWindows\Sprite.cpp(57,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\Aaron\Desktop\Winter2021\GameDev\CS380_Game\LeagueWindows\Sprite.cpp(58,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  Utility.cpp
-  Generating Code...
   LeagueWindows.vcxproj -> C:\Users\Aaron\Desktop\Winter2021\GameDev\CS380_Game\x64\Debug\LeagueWindows.exe

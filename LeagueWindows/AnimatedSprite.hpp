@@ -26,7 +26,6 @@ class AnimatedSprite : public Sprite {
 public:
 	AnimatedSprite(std::string spriteSheetPath, int sortingLayer, AnimData* inputAnimData, int startingAnimNum);
 	~AnimatedSprite();
-
 	void draw();
 
 private:

@@ -16,7 +16,7 @@ AnimatedSprite::AnimatedSprite(std::string spriteSheetPath, int sortingLayer, An
 	currentImage = inputAnimData->images.at(imageNum);
 
 	// todo: change starting rect
-	currentImage = rect;
+	// currentImage = rect;
 }
 
 void AnimatedSprite::ChangeAnimation(int animationNum) {
@@ -56,7 +56,7 @@ void AnimatedSprite::draw() {
 	dst->w = rect->w;
 	dst->h = rect->h;
 	//todo: render from source rect rather than null
-	SDL_RenderCopy(Engine::getRenderer(), texture, NULL, dst);
+	SDL_RenderCopy(Engine::getRenderer(), texture, currentImage, dst);
 }
 
 AnimatedSprite::~AnimatedSprite() {

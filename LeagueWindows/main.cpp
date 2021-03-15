@@ -25,51 +25,70 @@ int main(int argc, char** argv){
 	one.addDrawable(h);
 
 
+	/*// code taken from the textbook
+	struct AnimFrameData {
+		// The index of the first frame of an animation
+		int startFrame;
+		// The total number of frames for a particulare animation
+		int numFrames;
+	};
+
+	struct AnimData {
+		// Array of images for all animations for a sprite
+		std::vector<SDL_Rect*> images;
+		// Frame data array for each of the animations for the sprite
+		std::vector<AnimFrameData> frameInfo;
+	};*/
+
 	// Construct animation structs for the player object
 	// TODO: MAKE STATIC METHOD IN PLAYER TO DO THIS
-	AnimFrameData afd;
-	afd.startFrame = 0;
-	afd.numFrames = 10;
+	AnimFrameData down;
+	down.startFrame = 0;
+	down.numFrames = 1;
 
-	SDL_Rect* anim1Rect = new SDL_Rect();
+	AnimFrameData up;
+	up.startFrame = 1;
+	up.numFrames = 1;
 
-	AnimData PlayerAnimationData;
-	PlayerAnimationData.frameInfo.push_back(afd);
-	PlayerAnimationData.images.push_back(anim1Rect);
+	AnimFrameData left;
+	left.startFrame = 2;
+	left.numFrames = 1;
+
+	AnimFrameData right;
+	right.startFrame = 3;
+	right.numFrames = 1;
+
 	
 
-	std::cout << "AnimFrame data is " << afd.startFrame << afd.numFrames << std::endl;
+	SDL_Rect* downRect = new SDL_Rect{ 4, 3, 18, 25 };
+	SDL_Rect* upRect = new SDL_Rect{10, 35, 17, 24};
+	SDL_Rect* leftRect = new SDL_Rect{ 3, 67, 18, 25 };
+	SDL_Rect* rightRect = new SDL_Rect{ 11, 99, 18, 25 };
+
+	AnimData PlayerAnimationData;
+	PlayerAnimationData.frameInfo.push_back(down);
+	PlayerAnimationData.frameInfo.push_back(up);
+	PlayerAnimationData.frameInfo.push_back(left);
+	PlayerAnimationData.frameInfo.push_back(right);
+	PlayerAnimationData.images.push_back(downRect);
+	PlayerAnimationData.images.push_back(upRect);
+	PlayerAnimationData.images.push_back(leftRect);
+	PlayerAnimationData.images.push_back(rightRect);
 
 	Player* player = new Player(&PlayerAnimationData);
 
+	auto player_up = [player](double delta, bool start) { player->up(delta, start); };
+	auto player_down = [player](double delta, bool start) { player->down(delta, start); };
+	auto player_left = [player](double delta, bool start) { player->left(delta, start); };
+	auto player_right = [player](double delta, bool start) { player->right(delta, start); };
 	
 	one.addUpdateable(player);
 	one.addDrawable(player);
 
-	/*// Make a banana and add to scene. Should update and draw.
-	SDL_Surface* surface = IMG_Load("../assets/banana.png");
-	//Banana* b = new Banana();
-	//Sprite* b = new Sprite(surface, 3);
-	//Sprite* other = new Sprite(surface, 1);
-	Banana* b = new Banana();
-	Banana* b2 = new Banana();
-	delete b2;
-
-	b->setLayer(2);
-
-
-	std::cout << "Result is: " << b->getLayer() << std::endl;
-	//Banana* b = new Banana();
-	one.addUpdateable(b);
-	one.addDrawable(b);
-	auto b_up = [b](double delta) { b->up(delta); };
-	auto b_down = [b](double delta) { b->down(delta); };
-	auto b_left = [b](double delta) { b->left(delta); };
-	auto b_right = [b](double delta) { b->right(delta); };
-	one.addKeyEvent( SDLK_w, b_up );
-	one.addKeyEvent( SDLK_a, b_left );
-	one.addKeyEvent( SDLK_d, b_right );
-	one.addKeyEvent( SDLK_s, b_down );*/
+	one.addKeyEvent(SDLK_w, player_up);
+	one.addKeyEvent(SDLK_a, player_left);
+	one.addKeyEvent(SDLK_d, player_right);
+	one.addKeyEvent(SDLK_s, player_down);
 
 	// Set the scene in the engine
 	engine.setScene(&one);

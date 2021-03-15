@@ -10,10 +10,10 @@ public:
 	Player(AnimData* inputAnimData);
 	~Player();
 	void update(double delta);
-	void left(double delta);
-	void right(double delta);
-	void up(double delta);
-	void down(double delta);
+	void left(double delta, bool start);
+	void right(double delta, bool start);
+	void up(double delta, bool start);
+	void down(double delta, bool start);
 	void swingSword(double delta);
 };
 

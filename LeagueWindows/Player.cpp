@@ -13,23 +13,34 @@ Player::~Player() {
 }
 
 void Player::update(double delta) {
-
+	position.setX(position.getX() + velocity.getX() * delta);
+	position.setY(position.getY() + velocity.getY() * delta);
+	if (position.getX() > 1024 - rect->w || position.getX() < 0) {
+		velocity.setX(0);
+	}
+	if (position.getY() > 768 - rect->h || position.getY() < 0) {
+		velocity.setY(0);
+	}
 }
 
-void Player::left(double delta) {
-
+void Player::left(double delta, bool start) {
+	int value = start ? -150 : 0;
+	velocity.setX(value);
 }
 
-void Player::right(double delta) {
-
+void Player::right(double delta, bool start) {
+	int value = start ? 150 : 0;
+	velocity.setX(value);
 }
 
-void Player::up(double delta) {
-
+void Player::up(double delta, bool start) {
+	int value = start ? -150 : 0;
+	velocity.setY(value);
 }
 
-void Player::down(double delta) {
-
+void Player::down(double delta, bool start ) {
+	int value = start ? 150 : 0;
+	velocity.setY(value);
 }
 
 void Player::swingSword(double delta) {
